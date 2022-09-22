@@ -1,0 +1,124 @@
+[
+  {
+    "problem_description": "\n\r\n\tHello World!를 출력하시오.\n",
+    "input_description": "\n\r\n\t없음\n",
+    "output_description": "\n\r\n\tHello World!를 출력하시오.\n",
+    "examples": [
+      {
+        "input": "",
+        "output": "Hello World!"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n아래 예제와 같이 고양이를 출력하시오.\n",
+    "input_description": "\n없음.\n",
+    "output_description": "\n고양이를 출력한다.\n",
+    "examples": [
+      {
+        "input": "",
+        "output": "\\    /\\\r\n )  ( ')\r\n(  /  )\r\n \\(__)|\r\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n아래 예제와 같이 개를 출력하시오.\n",
+    "input_description": "\n없음.\n",
+    "output_description": "\n개를 출력한다.\n",
+    "examples": [
+      {
+        "input": "",
+        "output": "|\\_/|\r\n|q p|   /}\r\n( 0 )\"\"\"\\\r\n|\"^\"`    |\r\n||_/=\\\\__|\r\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n아래 예제와 같이 새싹을 출력하시오.\n",
+    "input_description": "\n입력은 없다.\n",
+    "output_description": "\n새싹을 출력한다.\n",
+    "examples": [
+      {
+        "input": "\n",
+        "output": "         ,r'\"7\nr`-_   ,'  ,/\n \\. \". L_r'\n   `~\\/\n      |\n      |\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.\n",
+    "input_description": "\n첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)\n",
+    "output_description": "\n첫째 줄에 A+B를 출력한다.\n",
+    "examples": [
+      {
+        "input": "1 2\r\n",
+        "output": "3\r\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n두 정수 A와 B를 입력받은 다음, A-B를 출력하는 프로그램을 작성하시오.\n",
+    "input_description": "\n첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)\n",
+    "output_description": "\n첫째 줄에 A-B를 출력한다.\n",
+    "examples": [
+      {
+        "input": "3 2\n",
+        "output": "1"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n두 정수 A와 B를 입력받은 다음, A×B를 출력하는 프로그램을 작성하시오.\n",
+    "input_description": "\n첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)\n",
+    "output_description": "\n첫째 줄에 A×B를 출력한다.\n",
+    "examples": [
+      {
+        "input": "1 2\r\n",
+        "output": "2\r\n"
+      },
+      {
+        "input": "3 4\r\n",
+        "output": "12\r\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n두 자연수 A와 B가 주어진다. 이때, A+B, A-B, A*B, A/B(몫), A%B(나머지)를 출력하는 프로그램을 작성하시오. \n",
+    "input_description": "\n두 자연수 A와 B가 주어진다. (1 ≤ A, B ≤ 10,000)\n",
+    "output_description": "\n첫째 줄에 A+B, 둘째 줄에 A-B, 셋째 줄에 A*B, 넷째 줄에 A/B, 다섯째 줄에 A%B를 출력한다.\n",
+    "examples": [
+      {
+        "input": "7 3\r\n",
+        "output": "10\r\n4\r\n21\r\n2\r\n1\r\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n꼬마 정민이는 이제 A + B 정도는 쉽게 계산할 수 있다. 이제 A + B + C를 계산할 차례이다!\n",
+    "input_description": "\n첫 번째 줄에 A, B, C (1 ≤ A, B, C ≤ 1012)이 공백을 사이에 두고 주어진다.\n",
+    "output_description": "\nA+B+C의 값을 출력한다.\n",
+    "examples": [
+      {
+        "input": "77 77 7777\n",
+        "output": "7931\n"
+      }
+    ]
+  },
+  {
+    "problem_description": "\n두 정수 A와 B가 주어졌을 때, A와 B를 비교하는 프로그램을 작성하시오.\n",
+    "input_description": "\n첫째 줄에 A와 B가 주어진다. A와 B는 공백 한 칸으로 구분되어져 있다.\n",
+    "output_description": "\n첫째 줄에 다음 세 가지 중 하나를 출력한다.\n\nA가 B보다 큰 경우에는 '>'를 출력한다.\nA가 B보다 작은 경우에는 '<'를 출력한다.\nA와 B가 같은 경우에는 '=='를 출력한다.\n\n",
+    "examples": [
+      {
+        "input": "1 2\r\n",
+        "output": "<\r\n"
+      },
+      {
+        "input": "10 2\r\n",
+        "output": ">\r\n"
+      },
+      {
+        "input": "5 5\r\n",
+        "output": "==\r\n"
+      }
+    ]
+  }
+]
