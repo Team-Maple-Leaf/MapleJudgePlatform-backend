@@ -23,7 +23,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .useDefaultResponseMessages(true)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("org.mapleleaf.backend.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(swaggerInfo());
