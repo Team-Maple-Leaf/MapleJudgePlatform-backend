@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/status")
 @RestController
 public class StatusController {
-    private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(StatusController.class);
 
     @ApiOperation(value="특정 answer 제출 답안의 결과")
     @ApiResponses(value = {

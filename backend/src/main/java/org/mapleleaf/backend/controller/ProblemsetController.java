@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/problemset")
 @RestController
 public class ProblemsetController {
-    private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProblemsetController.class);
 
     @ApiOperation(value="모든 problem정보")
     @GetMapping("/")

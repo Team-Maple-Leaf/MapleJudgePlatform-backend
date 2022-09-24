@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/submit")
 @RestController
 public class SubmitController {
-    private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SubmitController.class);
 
     @ApiOperation(value="answer 제출")
     @PostMapping("/{problemId}")

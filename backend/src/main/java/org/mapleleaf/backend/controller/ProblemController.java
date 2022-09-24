@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Api(value = "[문제 상세정보 페이지]")
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/problem")
 @RestController
 public class ProblemController {
     private static final Logger logger = LoggerFactory.getLogger(ProblemController.class);
 
 
     @ApiOperation(value="특정 problem정보")
-    @GetMapping("/problem/{id}")
-    Problem one(@PathVariable Long id) {
-        logger.info("problems one: " + id);
+    @GetMapping("/{problemNumber}")
+    Problem one(@PathVariable Long problemNumber) {
+        logger.info("problems one: " + problemNumber);
         return new Problem();
     }
 }
