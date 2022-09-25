@@ -14,7 +14,8 @@
         "input": "",
         "output": "Hello World!"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/2557"
   },
   {
     "no": "10171",
@@ -31,7 +32,8 @@
         "input": "",
         "output": "\\    /\\\r\n )  ( ')\r\n(  /  )\r\n \\(__)|\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/10171"
   },
   {
     "no": "10172",
@@ -48,7 +50,8 @@
         "input": "",
         "output": "|\\_/|\r\n|q p|   /}\r\n( 0 )\"\"\"\\\r\n|\"^\"`    |\r\n||_/=\\\\__|\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/10172"
   },
   {
     "no": "25083",
@@ -65,7 +68,8 @@
         "input": "\n",
         "output": "         ,r'\"7\nr`-_   ,'  ,/\n \\. \". L_r'\n   `~\\/\n      |\n      |\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/25083"
   },
   {
     "no": "1000",
@@ -82,7 +86,8 @@
         "input": "1 2\r\n",
         "output": "3\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/1000"
   },
   {
     "no": "1001",
@@ -99,7 +104,8 @@
         "input": "3 2\n",
         "output": "1"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/1001"
   },
   {
     "no": "10998",
@@ -120,7 +126,8 @@
         "input": "3 4\r\n",
         "output": "12\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/10998"
   },
   {
     "no": "10869",
@@ -137,7 +144,30 @@
         "input": "7 3\r\n",
         "output": "10\r\n4\r\n21\r\n2\r\n1\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/10869"
+  },
+  {
+    "no": "1008",
+    "title": "A/B",
+    "limit_info": {
+      "time": "2 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "두 정수 A와 B를 입력받은 다음, A/B를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)",
+    "output_desc": "첫째 줄에 A/B를 출력한다. 실제 정답과 출력값의 절대오차 또는 상대오차가 10-9 이하이면 정답이다.",
+    "io_samples": [
+      {
+        "input": "1 3\n",
+        "output": "0.33333333333333333333333333333333\n"
+      },
+      {
+        "input": "4 5\n",
+        "output": "0.8\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/1008"
   },
   {
     "no": "11382",
@@ -154,7 +184,8 @@
         "input": "77 77 7777\n",
         "output": "7931\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/11382"
   },
   {
     "no": "1330",
@@ -179,7 +210,8 @@
         "input": "5 5\r\n",
         "output": "==\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/1330"
   },
   {
     "no": "9498",
@@ -196,7 +228,8 @@
         "input": "100\r\n",
         "output": "A\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/9498"
   },
   {
     "no": "14681",
@@ -217,7 +250,8 @@
         "input": "9\n-13\n",
         "output": "4\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/14681"
   },
   {
     "no": "2420",
@@ -234,6 +268,7 @@
         "input": "-2 5\r\n",
         "output": "7\r\n"
       }
-    ]
+    ],
+    "ref": "https://www.acmicpc.net/problem/2420"
   }
 ]
