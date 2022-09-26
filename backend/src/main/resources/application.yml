@@ -4,7 +4,7 @@ spring:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://maple-leaf-db:3306/paperdb?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://maple-leaf-db:3306/mapledb?serverTimezone=Asia/Seoul
     username: user
     password: user
   jpa:
