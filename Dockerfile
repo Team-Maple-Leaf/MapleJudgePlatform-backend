@@ -1,16 +1,15 @@
-FROM openjdk:11
-
-WORKDIR /app
-
-COPY . .
-
-WORKDIR /app/backend
+FROM openjdk:11-jdk AS builder
+COPY ./backend/gradlew .
+COPY ./backend/gradle gradle
+COPY ./backend/build.gradle .
+COPY ./backend/settings.gradle .
+COPY ./backend/src src
 
 RUN chmod +x ./gradlew
-RUN ./gradlew build
+RUN ./gradlew bootJar
 
-WORKDIR /app/backend/build/libs
+FROM openjdk:11-jdk
+COPY --from=builder ./build/libs/*.jar app.jar
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "./backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
