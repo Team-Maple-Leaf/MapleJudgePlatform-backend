@@ -1,0 +1,274 @@
+[
+  {
+    "no": "2557",
+    "title": "Hello World",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "Hello World!를 출력하시오.",
+    "input_desc": "없음",
+    "output_desc": "Hello World!를 출력하시오.",
+    "io_samples": [
+      {
+        "input": "",
+        "output": "Hello World!"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/2557"
+  },
+  {
+    "no": "10171",
+    "title": "고양이",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "256 MB"
+    },
+    "problem_desc": "아래 예제와 같이 고양이를 출력하시오.",
+    "input_desc": "없음.",
+    "output_desc": "고양이를 출력한다.",
+    "io_samples": [
+      {
+        "input": "",
+        "output": "\\    /\\\r\n )  ( ')\r\n(  /  )\r\n \\(__)|\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/10171"
+  },
+  {
+    "no": "10172",
+    "title": "개",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "256 MB"
+    },
+    "problem_desc": "아래 예제와 같이 개를 출력하시오.",
+    "input_desc": "없음.",
+    "output_desc": "개를 출력한다.",
+    "io_samples": [
+      {
+        "input": "",
+        "output": "|\\_/|\r\n|q p|   /}\r\n( 0 )\"\"\"\\\r\n|\"^\"`    |\r\n||_/=\\\\__|\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/10172"
+  },
+  {
+    "no": "25083",
+    "title": "새싹",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "1024 MB"
+    },
+    "problem_desc": "아래 예제와 같이 새싹을 출력하시오.",
+    "input_desc": "입력은 없다.",
+    "output_desc": "새싹을 출력한다.",
+    "io_samples": [
+      {
+        "input": "\n",
+        "output": "         ,r'\"7\nr`-_   ,'  ,/\n \\. \". L_r'\n   `~\\/\n      |\n      |\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/25083"
+  },
+  {
+    "no": "1000",
+    "title": "A+B",
+    "limit_info": {
+      "time": "2 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)",
+    "output_desc": "첫째 줄에 A+B를 출력한다.",
+    "io_samples": [
+      {
+        "input": "1 2\r\n",
+        "output": "3\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/1000"
+  },
+  {
+    "no": "1001",
+    "title": "A-B",
+    "limit_info": {
+      "time": "2 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "두 정수 A와 B를 입력받은 다음, A-B를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)",
+    "output_desc": "첫째 줄에 A-B를 출력한다.",
+    "io_samples": [
+      {
+        "input": "3 2\n",
+        "output": "1"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/1001"
+  },
+  {
+    "no": "10998",
+    "title": "A×B",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "256 MB"
+    },
+    "problem_desc": "두 정수 A와 B를 입력받은 다음, A×B를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)",
+    "output_desc": "첫째 줄에 A×B를 출력한다.",
+    "io_samples": [
+      {
+        "input": "1 2\r\n",
+        "output": "2\r\n"
+      },
+      {
+        "input": "3 4\r\n",
+        "output": "12\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/10998"
+  },
+  {
+    "no": "10869",
+    "title": "사칙연산",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "256 MB"
+    },
+    "problem_desc": "두 자연수 A와 B가 주어진다. 이때, A+B, A-B, A*B, A/B(몫), A%B(나머지)를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "두 자연수 A와 B가 주어진다. (1 ≤ A, B ≤ 10,000)",
+    "output_desc": "첫째 줄에 A+B, 둘째 줄에 A-B, 셋째 줄에 A*B, 넷째 줄에 A/B, 다섯째 줄에 A%B를 출력한다.",
+    "io_samples": [
+      {
+        "input": "7 3\r\n",
+        "output": "10\r\n4\r\n21\r\n2\r\n1\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/10869"
+  },
+  {
+    "no": "1008",
+    "title": "A/B",
+    "limit_info": {
+      "time": "2 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "두 정수 A와 B를 입력받은 다음, A/B를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)",
+    "output_desc": "첫째 줄에 A/B를 출력한다. 실제 정답과 출력값의 절대오차 또는 상대오차가 10-9 이하이면 정답이다.",
+    "io_samples": [
+      {
+        "input": "1 3\n",
+        "output": "0.33333333333333333333333333333333\n"
+      },
+      {
+        "input": "4 5\n",
+        "output": "0.8\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/1008"
+  },
+  {
+    "no": "11382",
+    "title": "꼬마 정민",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "512 MB"
+    },
+    "problem_desc": "꼬마 정민이는 이제 A + B 정도는 쉽게 계산할 수 있다. 이제 A + B + C를 계산할 차례이다!",
+    "input_desc": "첫 번째 줄에 A, B, C (1 ≤ A, B, C ≤ 1012)이 공백을 사이에 두고 주어진다.",
+    "output_desc": "A+B+C의 값을 출력한다.",
+    "io_samples": [
+      {
+        "input": "77 77 7777\n",
+        "output": "7931\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/11382"
+  },
+  {
+    "no": "1330",
+    "title": "두 수 비교하기",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "512 MB"
+    },
+    "problem_desc": "두 정수 A와 B가 주어졌을 때, A와 B를 비교하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 A와 B가 주어진다. A와 B는 공백 한 칸으로 구분되어져 있다.",
+    "output_desc": "첫째 줄에 다음 세 가지 중 하나를 출력한다.\n\nA가 B보다 큰 경우에는 '>'를 출력한다.\nA가 B보다 작은 경우에는 '<'를 출력한다.\nA와 B가 같은 경우에는 '=='를 출력한다.",
+    "io_samples": [
+      {
+        "input": "1 2\r\n",
+        "output": "<\r\n"
+      },
+      {
+        "input": "10 2\r\n",
+        "output": ">\r\n"
+      },
+      {
+        "input": "5 5\r\n",
+        "output": "==\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/1330"
+  },
+  {
+    "no": "9498",
+    "title": "시험 성적",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "시험 점수를 입력받아 90 ~ 100점은 A, 80 ~ 89점은 B, 70 ~ 79점은 C, 60 ~ 69점은 D, 나머지 점수는 F를 출력하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 시험 점수가 주어진다. 시험 점수는 0보다 크거나 같고, 100보다 작거나 같은 정수이다.",
+    "output_desc": "시험 성적을 출력한다.",
+    "io_samples": [
+      {
+        "input": "100\r\n",
+        "output": "A\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/9498"
+  },
+  {
+    "no": "14681",
+    "title": "사분면 고르기",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "512 MB"
+    },
+    "problem_desc": "흔한 수학 문제 중 하나는 주어진 점이 어느 사분면에 속하는지 알아내는 것이다. 사분면은 아래 그림처럼 1부터 4까지 번호를 갖는다. \"Quadrant n\"은 \"제n사분면\"이라는 뜻이다.\n\n예를 들어, 좌표가 (12, 5)인 점 A는 x좌표와 y좌표가 모두 양수이므로 제1사분면에 속한다. 점 B는 x좌표가 음수이고 y좌표가 양수이므로 제2사분면에 속한다.\n점의 좌표를 입력받아 그 점이 어느 사분면에 속하는지 알아내는 프로그램을 작성하시오. 단, x좌표와 y좌표는 모두 양수나 음수라고 가정한다.",
+    "input_desc": "첫 줄에는 정수 x가 주어진다. (−1000 ≤ x ≤ 1000; x ≠ 0) 다음 줄에는 정수 y가 주어진다. (−1000 ≤ y ≤ 1000; y ≠ 0)",
+    "output_desc": "점 (x, y)의 사분면 번호(1, 2, 3, 4 중 하나)를 출력한다.",
+    "io_samples": [
+      {
+        "input": "12\n5\n",
+        "output": "1\n"
+      },
+      {
+        "input": "9\n-13\n",
+        "output": "4\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/14681"
+  },
+  {
+    "no": "2420",
+    "title": "사파리월드",
+    "limit_info": {
+      "time": "1 초",
+      "memory": "128 MB"
+    },
+    "problem_desc": "사파리월드는 인터넷으로만 존재하는 미스테리한 나라이다. 사파리월드에는 2개의 서브도메인이 seunghwan.royal.gov.sw와 kyuhyun.royal.gov.sw 이 있는데, 이것이 couple.royal.gov.sw으로 합쳐질 것이다. 그러나 도메인 관리 센터 SWNIC(센터장: 김동규)에는 엄격한 룰이 있다. 두 서브도메인을 합칠 때, 유명도의 차이가 너무 차이나지 않을 경우에만 두 서브도메인을 결혼시키는 것이다. 서브도메인의 유명도는 정수이다. 두 서브도메인의 유명도가 주어졌을 때, 그 차이를 구하는 프로그램을 작성하시오.",
+    "input_desc": "첫째 줄에 두 도메인의 유명도 N과 M이 주어진다. (-2,000,000,000 ≤ N, M ≤ 2,000,000,000)",
+    "output_desc": "첫째 줄에 두 유명도의 차이 (|N-M|)을 출력한다.",
+    "io_samples": [
+      {
+        "input": "-2 5\r\n",
+        "output": "7\r\n"
+      }
+    ],
+    "ref": "https://www.acmicpc.net/problem/2420"
+  }
+]
