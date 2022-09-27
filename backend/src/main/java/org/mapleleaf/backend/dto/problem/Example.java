@@ -1,4 +1,4 @@
-package org.mapleleaf.backend.dto;
+package org.mapleleaf.backend.dto.problem;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

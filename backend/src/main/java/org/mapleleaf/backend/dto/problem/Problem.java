@@ -1,6 +1,6 @@
-package org.mapleleaf.backend.dto;
+package org.mapleleaf.backend.dto.problem;
 
-import io.swagger.annotations.Api;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,33 +14,44 @@ public class Problem {
             value="문제 id",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY
     )
-    private Long id;
+    private int no;
+
     @ApiModelProperty(
             value="문제 제목",
             required = true,
             example="Hello World 출력"
     )
     private String title;
+
+    @ApiModelProperty(value="문제 제약사항들")
+    @JsonProperty("limit_info")
+    private LimitInfo limitInfo;
+
     @ApiModelProperty(
             value="문제 설명",
             required = true,
             example="Hello World를 출력해보자"
     )
-    private String problemDescription;
+    @JsonProperty("problem_desc")
+    private String problemDesc;
+
     @ApiModelProperty(
             value="입력 설명",
             required = true,
             example="이 문제는 입력이 없습니다."
     )
-    private String inputDescription;
+    @JsonProperty("input_desc")
+    private String inputDesc;
+
     @ApiModelProperty(
             value="출력 설명",
             required = true,
             example="Hello World!"
     )
-    private String outputDescription;
-    @ApiModelProperty(
-            "입력과 출력의 예시"
-    )
-    private List<Example> examples;
+    @JsonProperty("output_desc")
+    private String outputDesc;
+
+    @ApiModelProperty("입력과 출력의 예시")
+    @JsonProperty("io_samples")
+    private List<Example> ioExamples;
 }
