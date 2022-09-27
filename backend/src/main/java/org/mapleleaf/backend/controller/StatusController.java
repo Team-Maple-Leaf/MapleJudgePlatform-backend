@@ -1,18 +1,17 @@
 package org.mapleleaf.backend.controller;
 
 import io.swagger.annotations.*;
-import org.mapleleaf.backend.dto.Submit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "[제출 결과 페이지]")
-@RequestMapping("/api/v1/status")
+@RequestMapping("/v1/status")
 @RestController
 public class StatusController {
     private static final Logger logger = LoggerFactory.getLogger(StatusController.class);
 
-    @ApiOperation(value="특정 answer 제출 답안의 결과")
+    @ApiOperation(value = "특정 answer 제출 답안의 결과")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "user_id값이 존재하지 않습니다."),
             @ApiResponse(code = 401, message = "user_id와 일치하는 user가 없습니다.")
