@@ -36,7 +36,7 @@ public class Answer {
             value="제출된 답안의 체점 상태",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY,
             example="")
-    private AnswerState state;
+    private AnswerStatus state;
     @ApiModelProperty(
             value="답을 작성한 코드의 언어",
             required = true,

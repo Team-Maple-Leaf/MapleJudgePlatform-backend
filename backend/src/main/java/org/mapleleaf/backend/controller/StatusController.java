@@ -1,6 +1,8 @@
 package org.mapleleaf.backend.controller;
 
 import io.swagger.annotations.*;
+import org.mapleleaf.backend.dto.Answer;
+import org.mapleleaf.backend.dto.AnswerStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +33,11 @@ public class StatusController {
             }
     )
     @GetMapping("/")
-    public void status(
+    public AnswerStatus status(
             @RequestParam(value="problem_id")Long problemId,
             @RequestParam(value="user_id")Long userId) {
         logger.info("problem id: {}, user id: {}", problemId, userId);
+        return new AnswerStatus();
     }
 
 }

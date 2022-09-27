@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @ApiModel
-public class AnswerState {
+public class AnswerStatus {
     public enum Result {
         ACCEPTED,
         PROCEEDING,
