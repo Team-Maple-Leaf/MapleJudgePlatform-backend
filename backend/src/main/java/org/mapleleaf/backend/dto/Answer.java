@@ -1,5 +1,6 @@
 package org.mapleleaf.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,11 +27,13 @@ public class Answer {
             value="답을 작성한 유저 id",
             required=true,
             example="1")
+    @JsonProperty("user_id")
     private Long userId;
     @ApiModelProperty(
             value="제출 할 문제 id",
             required = true,
             example="1")
+    @JsonProperty("problem_id")
     private Long problemId;
     @ApiModelProperty(
             value="제출된 답안의 체점 상태",
@@ -40,7 +43,7 @@ public class Answer {
     @ApiModelProperty(
             value="답을 작성한 코드의 언어",
             required = true,
-            example="c")
+            example="C")
     private Language language;
     @ApiModelProperty(
             value="제출 시간"
@@ -49,5 +52,6 @@ public class Answer {
     @ApiModelProperty(
             value="코드 길이"
     )
+    @JsonProperty("code_length")
     private int codeLength;
 }

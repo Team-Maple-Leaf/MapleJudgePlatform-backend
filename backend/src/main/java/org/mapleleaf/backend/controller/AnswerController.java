@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Api(value = "답(answer)와 관련된 EP")
-@RequestMapping("/v1")
+@Api(value = "[답 상세정보 페이지]")
+@RequestMapping("/v1/answers")
 @RestController
 public class AnswerController {
     private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
@@ -19,14 +19,14 @@ public class AnswerController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "id에 맞는 answer가 존재하지 않습니다."),
     })
-    @GetMapping("/answers/{id}")
+    @GetMapping("/{id}")
     public Answer one(@PathVariable String id) {
         logger.info("answers one: " + "id: {}", id);
         return new Answer();
     }
 
     @ApiOperation(value="모든 answer의 정보")
-    @GetMapping("/answers")
+    @GetMapping("/")
     public List<Answer> all() {
         logger.info("answer all");
         return new ArrayList<>();
