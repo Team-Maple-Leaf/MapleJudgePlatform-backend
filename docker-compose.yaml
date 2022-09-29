@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: maple-leaf-db
+    environment:
+      MYSQL_ROOT_PASSWORD: pass123#
+      MYSQL_DATABASE: mapledb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3306:3306"
+    networks:
+      - maple-leaf-be-db
+    restart: always
+    command:
+      - --character-set-server=utf8
+      - --collation-server=utf8_general_ci
+
+  springboot:
+    build: .
+    container_name: maple-leaf-server
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - maple-leaf-be-db
+
+networks:
+  maple-leaf-be-db: {}
