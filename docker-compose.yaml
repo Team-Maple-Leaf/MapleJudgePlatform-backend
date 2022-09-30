@@ -9,14 +9,12 @@ services:
       MYSQL_DATABASE: mapledb
       MYSQL_USER: user
       MYSQL_PASSWORD: user
-    ports:
-      - "3306:3306"
     networks:
       - maple-leaf-be-db
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
     restart: always
-    command:
-      - --character-set-server=utf8
-      - --collation-server=utf8_general_ci
 
   springboot:
     build: .
@@ -25,6 +23,7 @@ services:
       - mysql
     ports:
       - "8080:8080"
+    restart: always
     networks:
       - maple-leaf-be-db
 
