@@ -38,9 +38,9 @@
 # .idea/artifacts
 # .idea/compiler.xml
 # .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
+.idea/*.xml
+.idea/*.iml
+.idea/modules
 # *.iml
 # *.ipr
 
@@ -170,3 +170,7 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,gradle
 db/
 !db/conf.d/
+backend/caches/
+backend/daemon/
+backend/native/
+backend/jdks/
