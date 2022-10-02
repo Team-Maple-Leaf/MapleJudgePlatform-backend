@@ -4,6 +4,7 @@ services:
   mysql:
     image: mysql:5.7
     container_name: maple-leaf-db
+    platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: pass123#
       MYSQL_DATABASE: mapledb
