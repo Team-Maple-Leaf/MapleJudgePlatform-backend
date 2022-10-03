@@ -19,7 +19,7 @@ public class ProblemsetController {
     private static final Logger logger = LoggerFactory.getLogger(ProblemsetController.class);
 
     @ApiOperation(value="모든 problem정보")
-    @GetMapping("/")
+    @GetMapping("")
     List<Problem> problemset() {
         logger.info("problems all");
         return new ArrayList<>();
