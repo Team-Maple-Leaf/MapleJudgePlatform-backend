@@ -1,7 +1,7 @@
 package org.mapleleaf.backend.controller;
 
 import io.swagger.annotations.*;
-import org.mapleleaf.backend.dto.Answer;
+import org.mapleleaf.backend.dto.AnswerDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +20,14 @@ public class AnswerController {
             @ApiResponse(code = 404, message = "id에 맞는 answer가 존재하지 않습니다."),
     })
     @GetMapping("/{id}")
-    public Answer one(@PathVariable String id) {
+    public AnswerDto one(@PathVariable String id) {
         logger.info("answers one: " + "id: {}", id);
-        return new Answer();
+        return new AnswerDto();
     }
 
     @ApiOperation(value="모든 answer의 정보")
     @GetMapping("")
-    public List<Answer> all() {
+    public List<AnswerDto> all() {
         logger.info("answer all");
         return new ArrayList<>();
     }

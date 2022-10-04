@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @ApiModel
-public class Answer {
+public class AnswerDto {
 
     public enum Language {
         C
@@ -39,7 +39,7 @@ public class Answer {
             value="제출된 답안의 체점 상태",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY,
             example="")
-    private AnswerStatus state;
+    private AnswerStatusDto state;
     @ApiModelProperty(
             value="답을 작성한 코드의 언어",
             required = true,

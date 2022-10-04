@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.mapleleaf.backend.dto.problem.Problem;
+import org.mapleleaf.backend.dto.problem.ProblemDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +23,8 @@ public class ProblemController {
             @ApiResponse(code = 404, message = "problem_id에 일치하는 문제가 없습니다.")
     })
     @GetMapping("/{problemId}")
-    Problem one(@PathVariable Long problemId) {
+    ProblemDto one(@PathVariable Long problemId) {
         logger.info("problems one: " + problemId);
-        return new Problem();
+        return new ProblemDto();
     }
 }

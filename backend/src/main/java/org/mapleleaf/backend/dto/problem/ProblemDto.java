@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @ApiModel
-public class Problem {
+public class ProblemDto {
     @ApiModelProperty(
             value="문제 id",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY
@@ -25,7 +25,7 @@ public class Problem {
 
     @ApiModelProperty(value="문제 제약사항들")
     @JsonProperty("limit_info")
-    private LimitInfo limitInfo;
+    private LimitInfoDto limitInfo;
 
     @ApiModelProperty(
             value="문제 설명",
@@ -53,5 +53,5 @@ public class Problem {
 
     @ApiModelProperty("입력과 출력의 예시")
     @JsonProperty("io_samples")
-    private List<Example> ioExamples;
+    private List<ExampleDto> ioExamples;
 }
