@@ -32,7 +32,7 @@ public class StatusController {
                             dataType="query")
             }
     )
-    @GetMapping("/")
+    @GetMapping("")
     public AnswerStatus status(
             @RequestParam(value="problem_id")Long problemId,
             @RequestParam(value="user_id")Long userId) {

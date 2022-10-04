@@ -26,7 +26,7 @@ public class AnswerController {
     }
 
     @ApiOperation(value="모든 answer의 정보")
-    @GetMapping("/")
+    @GetMapping("")
     public List<Answer> all() {
         logger.info("answer all");
         return new ArrayList<>();
