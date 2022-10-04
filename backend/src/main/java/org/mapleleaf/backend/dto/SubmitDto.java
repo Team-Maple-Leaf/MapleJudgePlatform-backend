@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @ApiModel
-public class Submit {
+public class SubmitDto {
     @ApiModelProperty(
             value="유저 id",
             example="1")
@@ -22,6 +22,6 @@ public class Submit {
             value="답을 작성한 코드의 언어",
             required = true,
             example="c")
-    private Answer.Language language;
+    private AnswerDto.Language language;
 
 }

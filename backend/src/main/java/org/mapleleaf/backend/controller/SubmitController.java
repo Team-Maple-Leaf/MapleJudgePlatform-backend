@@ -1,7 +1,7 @@
 package org.mapleleaf.backend.controller;
 
 import io.swagger.annotations.*;
-import org.mapleleaf.backend.dto.Submit;
+import org.mapleleaf.backend.dto.SubmitDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class SubmitController {
             }
     )
     @PostMapping("/{problemId}")
-    public void submit(@PathVariable Long problemId, @RequestBody Submit submit) {
+    public void submit(@PathVariable Long problemId, @RequestBody SubmitDto submit) {
         logger.info("problem id: {}, answer: {}", problemId, submit.toString());
     }
 }

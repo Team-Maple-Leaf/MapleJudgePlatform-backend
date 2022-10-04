@@ -6,13 +6,16 @@ import lombok.Data;
 
 @Data
 @ApiModel
-public class Example {
+public class LimitInfoDto {
     @ApiModelProperty(
-            value="입력 예시",
-            example="")
-    String input;
+            value="시간 제약",
+            example="1 초"
+    )
+    String time;
+
     @ApiModelProperty(
-            value="출력 예시",
-            example="Hello World!\n")
-    String output;
+            value="메모리 제약",
+            example = "128 MB"
+    )
+    String memory;
 }
