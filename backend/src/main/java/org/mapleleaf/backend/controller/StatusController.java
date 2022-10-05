@@ -1,6 +1,7 @@
 package org.mapleleaf.backend.controller;
 
 import io.swagger.annotations.*;
+import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.AnswerStatusDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "[제출 결과 페이지]")
 @RequestMapping("/v1/status")
 @RestController
+@Slf4j
 public class StatusController {
-    private static final Logger logger = LoggerFactory.getLogger(StatusController.class);
-
     @ApiOperation(value = "특정 answer 제출 답안의 결과")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "user_id값이 존재하지 않습니다."),
@@ -35,7 +35,7 @@ public class StatusController {
     public AnswerStatusDto status(
             @RequestParam(value="problem_id")Long problemId,
             @RequestParam(value="user_id")Long userId) {
-        logger.info("problem id: {}, user id: {}", problemId, userId);
+        log.info("problem id: {}, user id: {}", problemId, userId);
         return new AnswerStatusDto();
     }
 
