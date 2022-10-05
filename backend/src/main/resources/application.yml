@@ -1,4 +1,7 @@
 spring:
+  config:
+    activate:
+      on-profile: host
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
