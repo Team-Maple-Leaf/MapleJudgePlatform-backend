@@ -28,7 +28,7 @@ public class AnswerDto {
             required=true,
             example="1")
     @JsonProperty("user_id")
-    private Long userId;
+    private String userId;
     @ApiModelProperty(
             value="제출 할 문제 id",
             required = true,
