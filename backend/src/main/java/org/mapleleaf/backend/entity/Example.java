@@ -21,7 +21,9 @@ public class Example {
     @Column(name = "problem_id")
     private Long problemId;
 
+    @Column
     private String input;
 
+    @Column
     private String output;
 }
