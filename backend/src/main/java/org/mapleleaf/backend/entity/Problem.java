@@ -32,6 +32,6 @@ public class Problem {
     @Column(name = "output_desc")
     private String outputDesc;
 
-    @OneToMany(mappedBy="problem")
-    private List<Example> examples = new ArrayList<Example>();
+//    @OneToMany(mappedBy="problem")
+//    private List<Example> examples = new ArrayList<Example>();
 }

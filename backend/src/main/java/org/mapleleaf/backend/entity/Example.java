@@ -17,9 +17,9 @@ public class Example {
     @Id
     private Long id;
 
-    // @ManyToOne
-    @Column(name = "problem_id")
-    private Long problemId;
+    //@ManyToOne
+//    @Column(name = "problem_id")
+//    private Long problemId;
 
     @Column
     private String input;
