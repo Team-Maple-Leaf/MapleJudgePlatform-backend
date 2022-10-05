@@ -1,12 +1,18 @@
 package org.mapleleaf.backend.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data       // @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 를 자동으로 넣어준다.
 @Entity     // 테이블과 매핑시켜준다. (@Table 어노테이션을 따로 추가하지 않고 클래스 이름을 그대로 테이블 이름으로 사용하자)
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Answer {
 
     @Id // DB에서 id로 이용 될 변수

@@ -11,6 +11,9 @@ import java.util.List;
 
 @Data
 @Entity // db 테이블과 1:1 매핑되는 객체, enum에는 사용 불가
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "problem")
 public class Problem {
 
@@ -28,4 +31,7 @@ public class Problem {
 
     @Column(name = "output_desc")
     private String outputDesc;
+
+    
+    private List<Example> examples;
 }
