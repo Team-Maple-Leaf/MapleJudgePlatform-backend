@@ -19,6 +19,7 @@ public class Problem {
 
     // @Column(name = "name", nullable = false, length = 10)
     @Id
+    @Column(name = "problem_id")
     private Long id;
 
     private String title;
@@ -32,6 +33,15 @@ public class Problem {
     @Column(name = "output_desc")
     private String outputDesc;
 
-//    @OneToMany(mappedBy="problem")
-//    private List<Example> examples = new ArrayList<Example>();
+    @OneToMany(mappedBy="problem")
+    private List<Example> examples;
+
+    public void addExample(Example example){
+        this.examples.add(example);
+        if(example.getProblem() != this){
+            example.setProblem(this);
+        }
+    }
+
+
 }
