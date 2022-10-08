@@ -33,7 +33,12 @@ public class Problem {
     @Column(name = "output_desc")
     private String outputDesc;
 
-    @OneToMany(mappedBy="problem")
+    @OneToMany(
+            mappedBy="problem",
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<Example> examples;
 
     public void addExample(Example example){

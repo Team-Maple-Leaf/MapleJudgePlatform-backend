@@ -45,6 +45,7 @@ class ProblemTest {
                 .build();
         problem = Problem.builder()
                 .id(problemId)
+                .title("title")
                 .problemDesc("problem")
                 .inputDesc("input")
                 .outputDesc("output")
@@ -61,10 +62,12 @@ class ProblemTest {
     @Test
     public void entityUpdateTest() {
         String title = "test title";
+        String desc = "test desc";
         String input = "test input";
         String output = "test output";
         problem = problemRepository.save(problem);
         problem.setTitle(title);
+        problem.setProblemDesc(desc);
         problem.setInputDesc(input);
         problem.setOutputDesc(output);
         problemRepository.flush();
@@ -73,6 +76,7 @@ class ProblemTest {
                 .findById(problemId)
                 .orElseThrow(IllegalAccessError::new);
         assertThat(found.getTitle()).isEqualTo(title);
+        assertThat(found.getProblemDesc()).isEqualTo(desc);
         assertThat(found.getInputDesc()).isEqualTo(input);
         assertThat(found.getOutputDesc()).isEqualTo(output);
 
@@ -89,5 +93,15 @@ class ProblemTest {
         exampleRepository.flush();
 
         assertThat(exampleRepository.findAll().size()).isEqualTo(3);
+    }
+
+    @Test
+    public void deleteProblemTest() {
+        problem = problemRepository.save(problem);
+        problemRepository.delete(problem);
+        problemRepository.flush();
+        exampleRepository.flush();
+
+        assertThat(exampleRepository.findAll().size()).isEqualTo(0);
     }
 }
