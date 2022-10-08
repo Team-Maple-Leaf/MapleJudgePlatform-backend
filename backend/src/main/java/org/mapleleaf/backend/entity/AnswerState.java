@@ -24,8 +24,8 @@ public class AnswerState {
     ** @Enumerated(EnumType.ORDINAL)
     ** @Enumerated(EnumType.STRING)
     */
-    @Column(length = 45)
-    private String result;
+    @Enumerated(EnumType.STRING)
+    private Result result;
 
     @Column
     private int memory;

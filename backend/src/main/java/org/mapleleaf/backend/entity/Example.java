@@ -17,10 +17,14 @@ import javax.persistence.*;
 public class Example {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="example_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
