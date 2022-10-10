@@ -24,8 +24,9 @@ public class AnswerState {
     ** @Enumerated(EnumType.ORDINAL)
     ** @Enumerated(EnumType.STRING)
     */
-    @Column(length = 45)
-    private String result;
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Result result = Result.ACCEPTED;
 
     @Column
     private int memory;

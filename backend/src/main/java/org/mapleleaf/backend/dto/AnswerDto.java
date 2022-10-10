@@ -3,17 +3,24 @@ package org.mapleleaf.backend.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.mapleleaf.backend.entity.Answer;
+import org.mapleleaf.backend.entity.AnswerState;
+import org.mapleleaf.backend.entity.Language;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @ApiModel
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AnswerDto {
 
-    public enum Language {
-        C
-    }
     @ApiModelProperty(
             value="답 id",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY)
@@ -54,4 +61,14 @@ public class AnswerDto {
     )
     @JsonProperty("code_length")
     private int codeLength;
+    public AnswerDto(final Answer answer) {
+        id = answer.getId();
+        code = answer.getCode();
+        userId = answer.getUserId();
+        problemId = answer.getProblemId().getId();
+        state = new AnswerStatusDto(answer.getStateId());
+        language = answer.getLanguage();
+        date = answer.getDate();
+        codeLength = answer.getCode_length();
+    }
 }

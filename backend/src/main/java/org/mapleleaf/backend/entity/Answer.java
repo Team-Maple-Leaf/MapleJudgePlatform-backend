@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data       // @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 를 자동으로 넣어준다.
@@ -22,7 +25,7 @@ public class Answer {
     @Column(name = "user_id") // DB Column을 표시
     private String userId;
 
-    @OneToOne   // 1대1 연관관계
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)   // 1대1 연관관계
     @JoinColumn(name = "state_id") // column 이름 설정
     private AnswerState stateId;
 
@@ -30,8 +33,8 @@ public class Answer {
     @JoinColumn(name = "problem_id")
     private Problem problemId;
 
-    @Column(length = 10)
-    private String language;
+    @Enumerated(EnumType.STRING)
+    private Language language;
 
     @Column(columnDefinition = "TEXT")
     private String code;
