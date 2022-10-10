@@ -4,6 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.mapleleaf.backend.entity.Answer;
+import org.mapleleaf.backend.entity.AnswerState;
+import org.mapleleaf.backend.entity.Language;
+import org.mapleleaf.backend.entity.Problem;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @ApiModel
@@ -12,7 +19,7 @@ public class SubmitDto {
             value="유저 id",
             example="1")
     @JsonProperty("user_id")
-    private Long userId;
+    private String userId;
     @ApiModelProperty(
             value="답을 작성한 코드",
             required=true,
@@ -21,7 +28,19 @@ public class SubmitDto {
     @ApiModelProperty(
             value="답을 작성한 코드의 언어",
             required = true,
-            example="c")
-    private AnswerDto.Language language;
+            example="C")
+    private Language language;
+    public Answer toAnswerEntityWithProblem(final Problem problem)
+    {
+        return Answer.builder()
+                .date(new Date())
+                .code_length(code.length())
+                .code(code)
+                .problemId(problem)
+                .stateId(new AnswerState())
+                .userId(userId)
+                .language(language)
+                .build();
+    }
 
 }
