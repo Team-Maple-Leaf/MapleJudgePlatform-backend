@@ -24,14 +24,20 @@ public class Problem {
 
     private String title;
 
-    @Column(name = "problem_desc")
+    @Column(name = "problem_desc", columnDefinition = "TEXT")
     private String problemDesc;
 
-    @Column(name = "input_desc")
+    @Column(name = "input_desc", columnDefinition = "TEXT")
     private String inputDesc;
 
-    @Column(name = "output_desc")
+    @Column(name = "output_desc", columnDefinition = "TEXT")
     private String outputDesc;
+
+    @Column(name = "limit_memory")
+    private int limitMemory;
+
+    @Column(name = "limit_time")
+    private int limitTime;
 
     @OneToMany(
             mappedBy="problem",
