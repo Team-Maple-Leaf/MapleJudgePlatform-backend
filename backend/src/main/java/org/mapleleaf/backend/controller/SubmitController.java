@@ -3,12 +3,10 @@ package org.mapleleaf.backend.controller;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapleleaf.backend.controller.status.BadRequestException;
-import org.mapleleaf.backend.controller.status.NotFoundException;
+import org.mapleleaf.backend.exception.BadRequestException;
+import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.dto.SubmitDto;
 import org.mapleleaf.backend.service.AnswerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "[코드 제출 페이지]")

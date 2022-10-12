@@ -1,4 +1,4 @@
-package org.mapleleaf.backend.controller.status;
+package org.mapleleaf.backend.exception;
 
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;

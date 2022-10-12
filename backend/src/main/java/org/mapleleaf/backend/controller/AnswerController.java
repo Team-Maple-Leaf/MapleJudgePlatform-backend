@@ -3,13 +3,12 @@ package org.mapleleaf.backend.controller;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapleleaf.backend.controller.status.NotFoundException;
+import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.dto.AnswerDto;
 import org.mapleleaf.backend.service.AnswerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Api(value = "[답 상세정보 페이지]")
