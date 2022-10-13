@@ -1,7 +1,16 @@
 spring:
+  profiles:
+    active: local
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://maple-leaf-db:3306/mapledb?serverTimezone=Asia/Seoul

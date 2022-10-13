@@ -3,18 +3,24 @@ package org.mapleleaf.backend.dto.problem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import org.mapleleaf.backend.entity.Problem;
 
 import java.util.List;
 
-@Data
+
+@Builder
+@Getter
+@Setter
 @ApiModel
-public class Problem {
+public class ProblemDto {
     @ApiModelProperty(
             value="문제 id",
             accessMode=ApiModelProperty.AccessMode.READ_ONLY
     )
-    private int no;
+    private Long no;
 
     @ApiModelProperty(
             value="문제 제목",
@@ -25,7 +31,7 @@ public class Problem {
 
     @ApiModelProperty(value="문제 제약사항들")
     @JsonProperty("limit_info")
-    private LimitInfo limitInfo;
+    private LimitInfoDto limitInfo;
 
     @ApiModelProperty(
             value="문제 설명",
@@ -52,6 +58,7 @@ public class Problem {
     private String outputDesc;
 
     @ApiModelProperty("입력과 출력의 예시")
-    @JsonProperty("io_samples")
-    private List<Example> ioExamples;
+    @JsonProperty("io_examples")
+    private List<ExampleDto> ioExamples;
+
 }

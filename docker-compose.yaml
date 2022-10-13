@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     container_name: maple-leaf-db
     platform: linux/x86_64
-    env_file: 
+    env_file:
      - "./db/.env"
     networks:
       - maple-leaf-be-db
