@@ -36,11 +36,9 @@ public class Example {
         }
     }
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String input;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String output;
-
-
 }
