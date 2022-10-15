@@ -7,17 +7,18 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.problem.ProblemDto;
-import org.mapleleaf.backend.entity.Problem;
+import org.mapleleaf.backend.entity.BasicResponse;
 import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.service.ProblemService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Api(value = "[문제 상세정보 페이지]")
 @RequestMapping("/v1/problem")
@@ -38,13 +39,30 @@ public class ProblemController {
     public ResponseEntity<?> getProblem(@PathVariable Long problemId) {
         try {
             ProblemDto problemDto = problemService.getProblem(problemId);
+            BasicResponse basicResponse = new BasicResponse();
+            basicResponse = BasicResponse.builder()
+                    .code(HttpStatus.OK.value())
+                    .httpStatus(HttpStatus.OK)
+                    .message(problemId + "번 문제 조회에 성공했습니다.")
+                    .data(problemDto)
+                    .build();
 
-            log.info("problems one: " + problemId);
-            return new ResponseEntity<ProblemDto>(problemDto, HttpStatus.OK);
+            log.info("get a problem " + problemId);
+
+            return new ResponseEntity<>(basicResponse, HttpStatus.OK);
 
         } catch (NotFoundException e) {
-            log.info(String.valueOf(e.getStackTrace()));
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            BasicResponse basicResponse = BasicResponse.builder()
+                    .code(HttpStatus.NOT_FOUND.value())
+                    .httpStatus(HttpStatus.NOT_FOUND)
+                    .message(problemId + "번 문제가 존재하지 않습니다.")
+                    .data(null)
+                    .build();
+
+            HttpHeaders errHeaders = new HttpHeaders(); // 한글깨짐 수정
+            errHeaders.add("Content-Type", "application/json;charset=UTF-8");
+            log.info("fail to get a problem " + problemId);
+            return new ResponseEntity<>(basicResponse, errHeaders, HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.problem.ProblemDto;
+import org.mapleleaf.backend.entity.BasicResponse;
 import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.service.ProblemService;
 import org.slf4j.Logger;
@@ -32,12 +33,19 @@ public class ProblemsetController {
     public ResponseEntity<?> problemset() {
         try {
             List<ProblemDto> problemDtoList = problemService.getAllProblems();
+            BasicResponse basicResponse = new BasicResponse();
+            basicResponse = BasicResponse.builder()
+                    .code(HttpStatus.OK.value())
+                    .httpStatus(HttpStatus.OK)
+                    .message("전체 문제에 대한 조회를 성공했습니다.")
+                    .data(problemDtoList)
+                    .build();
 
-            log.info("problems all");
-            return new ResponseEntity<List<ProblemDto>>(problemDtoList, HttpStatus.OK);
+            log.info("get all problems.");
+            return new ResponseEntity<>(basicResponse, HttpStatus.OK);
 
         } catch (NotFoundException e) {
-            log.info(String.valueOf(e.getStackTrace()));
+            log.info("fail to get all problems.");
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
