@@ -39,13 +39,13 @@ public class AnswerService {
                 .collect(Collectors.toList());
     }
 
-    public void submit(SubmitDto submitDto, Long problemId) {
+    public Answer submit(SubmitDto submitDto, Long problemId) {
         if (submitDto.getCode() == null || submitDto.getLanguage() == null || submitDto.getUserId() == null)
             throw new IllegalArgumentException();
         Problem problem = problemRepository.findById(problemId).orElseThrow(IllegalArgumentException::new);
         log.info("problem id in answer service: {} ", problem.getId());
         Answer answer = submitDto.toAnswerEntityWithProblem(problem);
-        answerRepository.save(answer);
+        return answerRepository.save(answer);
     }
 
     public Boolean hasProblem(Long problemId) {
