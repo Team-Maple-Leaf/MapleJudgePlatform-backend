@@ -3,10 +3,15 @@ package org.mapleleaf.backend.controller;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapleleaf.backend.controller.template.ResponseTemplate;
+import org.mapleleaf.backend.dto.response.BasicResponses;
 import org.mapleleaf.backend.exception.BadRequestException;
 import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.dto.AnswerStatusDto;
 import org.mapleleaf.backend.service.AnswerStateService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,20 +43,24 @@ public class StatusController {
             }
     )
     @GetMapping("")
-    public ResponseEntity<AnswerStatusDto> status(
+    public ResponseEntity<?> status(
             @RequestParam(value="problem_id", required = false)Long problemId,
             @RequestParam(value="user_id", required = false)String userId) {
         log.info("problem id: {}, user id: {}", problemId, userId);
         if (problemId == null || userId == null) {
-            log.error("user_id값 혹은 problem_id가 존재하지 않습니다.");
-            throw new BadRequestException("user_id값 혹은 problem_id가 존재하지 않습니다.");
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity<>(
+                    BasicResponses.getBadRequestResponse("user_id값 혹은 problem_id가 존재하지 않습니다."),
+                    headers,
+                    HttpStatus.NOT_FOUND
+            );
         }
-        try {
-            return ResponseEntity.ok(service.getStateByProblemIdAndUserId(problemId, userId));
-        } catch (Exception e) {
-            log.error("일치하는 answer가 없습니다.");
-            throw new NotFoundException("일치하는 answer가 없습니다.");
-        }
+        return ResponseTemplate.execute(
+                "status 조회에 성공했습니다.",
+                "일치하는 answer가 없습니다.",
+                () ->service.getStateByProblemIdAndUserId(problemId, userId),
+                HttpStatus.NOT_FOUND
+        );
     }
-
 }
