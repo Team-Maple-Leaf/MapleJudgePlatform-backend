@@ -9,26 +9,27 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 @Slf4j
-public class ResponseTemplate {
+public class ResponseTemplate{
     @FunctionalInterface
-    public interface DelayData {
-        Object func();
+    public interface DelayData<T> {
+        T get();
     }
-    static public ResponseEntity<?> execute(String successMsg, String failedMsg, DelayData data, HttpStatus failedType) {
+
+    static public <T> ResponseEntity<BasicResponse<T>> execute(String successMsg, String failedMsg, DelayData<T> data, HttpStatus failedType) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         try {
-            BasicResponse basicResponse =
+            BasicResponse<T> basicResponse =
                     BasicResponses.getOkResponse(
                             successMsg,
-                            data.func()
+                            data.get()
                     );
             log.info(successMsg);
             return new ResponseEntity<>(basicResponse, HttpStatus.OK);
         } catch (Exception e) {
             log.info(failedMsg);
             if (failedType == HttpStatus.NOT_FOUND) {
-                BasicResponse basicResponse =
+                BasicResponse<T> basicResponse =
                         BasicResponses.getNotFoundResponse(failedMsg);
                 return new ResponseEntity<>(basicResponse, headers, HttpStatus.NOT_FOUND);
             } else {

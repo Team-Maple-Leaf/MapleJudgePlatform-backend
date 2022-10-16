@@ -4,9 +4,9 @@ import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.controller.template.ResponseTemplate;
+import org.mapleleaf.backend.dto.response.BasicResponse;
 import org.mapleleaf.backend.dto.response.BasicResponses;
-import org.mapleleaf.backend.exception.BadRequestException;
-import org.mapleleaf.backend.exception.NotFoundException;
+import org.mapleleaf.backend.entity.Answer;
 import org.mapleleaf.backend.dto.SubmitDto;
 import org.mapleleaf.backend.service.AnswerService;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +30,7 @@ public class SubmitController {
             }
     )
     @PostMapping("/{problemId}")
-    public ResponseEntity<?> submit(@PathVariable Long problemId, @RequestBody SubmitDto submit) {
+    public ResponseEntity<BasicResponse<Answer>> submit(@PathVariable Long problemId, @RequestBody SubmitDto submit) {
         log.info("problem id: {}, answer: {}", problemId, submit.toString());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
