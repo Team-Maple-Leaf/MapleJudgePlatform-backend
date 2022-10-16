@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.controller.template.ResponseTemplate;
+import org.mapleleaf.backend.dto.problem.ProblemDto;
+import org.mapleleaf.backend.dto.response.BasicResponse;
 import org.mapleleaf.backend.service.ProblemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class ProblemController {
             @ApiResponse(code = 404, message = "problem_id에 일치하는 문제가 없습니다.")
     })
     @GetMapping("/{problemId}")
-    public ResponseEntity<?> getProblem(@PathVariable Long problemId) {
+    public ResponseEntity<BasicResponse<ProblemDto>> getProblem(@PathVariable Long problemId) {
         log.info("get a problem " + problemId);
         return ResponseTemplate.execute(
                 problemId + "번 문제 조회에 성공했습니다.",
