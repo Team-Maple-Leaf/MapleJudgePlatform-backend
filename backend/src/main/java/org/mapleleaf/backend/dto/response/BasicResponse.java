@@ -1,5 +1,7 @@
 package org.mapleleaf.backend.dto.response;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +12,26 @@ import org.springframework.http.HttpStatus;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BasicResponse {
+@ApiModel
+public class BasicResponse<T> {
+
+    @ApiModelProperty(
+            value = "http 코드",
+            example = "200"
+    )
     private Integer code;
+    @ApiModelProperty(
+            value = "http 상태메시지",
+            example = "OK"
+    )
     private HttpStatus httpStatus;
+    @ApiModelProperty(
+            value = "설명 메시지",
+            example = "성공 메시지 입니다."
+    )
     private String message;
-    private Object data;
+    @ApiModelProperty(
+            value = "특정 데이터"
+    )
+    private T data;
 }

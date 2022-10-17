@@ -4,10 +4,9 @@ import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.controller.template.ResponseTemplate;
-import org.mapleleaf.backend.dto.response.BasicResponses;
-import org.mapleleaf.backend.exception.BadRequestException;
-import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.dto.AnswerStatusDto;
+import org.mapleleaf.backend.dto.response.BasicResponse;
+import org.mapleleaf.backend.dto.response.BasicResponses;
 import org.mapleleaf.backend.service.AnswerStateService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -43,7 +42,7 @@ public class StatusController {
             }
     )
     @GetMapping("")
-    public ResponseEntity<?> status(
+    public ResponseEntity<BasicResponse<AnswerStatusDto>> status(
             @RequestParam(value="problem_id", required = false)Long problemId,
             @RequestParam(value="user_id", required = false)String userId) {
         log.info("problem id: {}, user id: {}", problemId, userId);

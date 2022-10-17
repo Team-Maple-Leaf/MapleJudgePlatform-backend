@@ -9,11 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.controller.template.ResponseTemplate;
 import org.mapleleaf.backend.dto.problem.ProblemDto;
 import org.mapleleaf.backend.dto.response.BasicResponse;
-import org.mapleleaf.backend.dto.response.BasicResponses;
 import org.mapleleaf.backend.service.ProblemService;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +32,7 @@ public class ProblemsetController {
             @ApiResponse(code = 404, message = "전체 문제에 대한 조회를 실패했습니다.")
     )
     @GetMapping("")
-    public ResponseEntity<?> problemset() {
+    public ResponseEntity<BasicResponse<List<ProblemDto>>> problemset() {
         log.info("get all problems.");
         return ResponseTemplate.execute(
                 "전체 문제에 대한 조회를 성공했습니다.",
