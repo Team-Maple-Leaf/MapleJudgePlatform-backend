@@ -20,16 +20,13 @@ public class BasicResponse<T> {
             example = "200"
     )
     private Integer code;
-    @ApiModelProperty(
-            value = "http 상태메시지",
-            example = "OK"
-    )
-    private HttpStatus httpStatus;
+
     @ApiModelProperty(
             value = "설명 메시지",
             example = "성공 메시지 입니다."
     )
     private String message;
+
     @ApiModelProperty(
             value = "특정 데이터"
     )
