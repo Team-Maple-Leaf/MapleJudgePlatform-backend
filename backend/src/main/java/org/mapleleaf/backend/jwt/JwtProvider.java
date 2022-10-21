@@ -1,18 +1,16 @@
 package org.mapleleaf.backend.jwt;
 
 
+import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 
 @Component
+@Slf4j
 public class JwtProvider {
 
     @Value("${jwt.password}")
@@ -24,7 +22,6 @@ public class JwtProvider {
         Date expiration = new Date(now.getTime() + Duration.ofHours(12).toMillis()); // 만료기간 12시간
 
         return Jwts.builder()
-                .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // (1)
                 .setIssuer("maple-leaf") // 토큰발급자(iss)
                 .setIssuedAt(now) // 발급시간(iat)
                 .setExpiration(expiration) // 만료시간(exp)
@@ -38,24 +35,27 @@ public class JwtProvider {
         Date expiration = new Date(now.getTime() + Duration.ofDays(14).toMillis()); // 만료기간 2주
 
         return Jwts.builder()
-                //.setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(secretKey.getBytes()))
                 .compact();
     }
 
-    /* Jwt 토큰의 유효성 체크 메소드 */
-    public Claims parseJwtToken(String token) {
-        token = BearerRemove(token); // Bearer 제거
+    public String getUuidFromToken(String token){
         return Jwts.parser()
                 .setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
                 .parseClaimsJws(token)
-                .getBody();
+                .getBody().getSubject();
     }
 
-    /* 토큰 앞 부분('Bearer') 제거 메소드 */
-    private String BearerRemove(String token) {
-        return token.substring("Bearer ".length());
+    public boolean isTokenValid(String token) {
+        try {
+            Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
+                    .parseClaimsJws(token).getBody();
+            return true;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw e;
+        }
     }
 }
