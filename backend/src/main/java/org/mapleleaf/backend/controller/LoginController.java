@@ -1,29 +1,21 @@
 package org.mapleleaf.backend.controller;
 
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.LoginRequestDto;
 import org.mapleleaf.backend.dto.TokenDto;
 import org.mapleleaf.backend.dto.response.BasicResponse;
-import org.mapleleaf.backend.entity.Member;
 import org.mapleleaf.backend.jwt.JwtProvider;
-import org.mapleleaf.backend.repository.MemberRepository;
 import org.mapleleaf.backend.service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/login")
 @Slf4j
 public class LoginController {
-
-    String TOKEN_PREFIX = "Bearer ";
-    String HEADER_STRING = "Authorization";
-
     private final LoginService loginService;
     private final JwtProvider jwtProvider;
 
@@ -54,6 +46,4 @@ public class LoginController {
                     .build(),  HttpStatus.UNAUTHORIZED);
         }
     }
-
-
 }

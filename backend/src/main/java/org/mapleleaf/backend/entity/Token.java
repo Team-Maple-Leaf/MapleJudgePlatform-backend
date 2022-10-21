@@ -1,6 +1,5 @@
 package org.mapleleaf.backend.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
