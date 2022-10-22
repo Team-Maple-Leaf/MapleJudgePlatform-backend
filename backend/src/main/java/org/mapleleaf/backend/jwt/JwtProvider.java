@@ -19,7 +19,7 @@ public class JwtProvider {
     /* 토큰 생성 메소드 */
     public String createToken(String subject) {
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + Duration.ofHours(12).toMillis()); // 만료기간 12시간
+        Date expiration = new Date(now.getTime() + Duration.ofHours(2).toMillis()); // 만료기간: 2시간
 
         return Jwts.builder()
                 .setIssuer("maple-leaf") // 토큰발급자(iss)
@@ -32,7 +32,7 @@ public class JwtProvider {
 
     public String createRefreshToken(String subject){
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + Duration.ofDays(14).toMillis()); // 만료기간 2주
+        Date expiration = new Date(now.getTime() + Duration.ofDays(14).toMillis()); // 만료기간: 2주
 
         return Jwts.builder()
                 .setIssuedAt(now)
