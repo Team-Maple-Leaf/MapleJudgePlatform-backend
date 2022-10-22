@@ -75,6 +75,8 @@ public class LoginService {
             md = MessageDigest.getInstance("SHA-256");
             md.update(xorResult);
             encoder = Base64.getEncoder();
+
+            // TODO : md.digest() 다시 확인
             log.info("result - {}", encoder.encodeToString(md.digest()));
             return encoder.encodeToString(md.digest());
         } catch (Exception e) {
