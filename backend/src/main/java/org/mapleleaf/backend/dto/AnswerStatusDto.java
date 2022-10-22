@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.mapleleaf.backend.entity.AnswerState;
 import org.mapleleaf.backend.entity.Result;
-import org.mapleleaf.backend.service.AnswerService;
-
 
 @Data
 @ApiModel

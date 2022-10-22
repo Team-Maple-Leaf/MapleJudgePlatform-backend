@@ -32,7 +32,12 @@ public class ResponseTemplate{
                 BasicResponse<T> basicResponse =
                         BasicResponses.getNotFoundResponse(failedMsg);
                 return new ResponseEntity<>(basicResponse, headers, HttpStatus.NOT_FOUND);
-            } else {
+            } else if(failedType == HttpStatus.UNAUTHORIZED) {
+                BasicResponse<T> basicResponse =
+                        BasicResponses.getUnauthorizedResponse(failedMsg);
+                return new ResponseEntity<>(basicResponse, headers, HttpStatus.UNAUTHORIZED);
+            }
+            else {
                 throw new IllegalArgumentException("failedType is not justify");
             }
         }

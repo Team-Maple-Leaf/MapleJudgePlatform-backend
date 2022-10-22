@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.mapleleaf.backend.entity.Problem;
 
 import java.util.List;
 

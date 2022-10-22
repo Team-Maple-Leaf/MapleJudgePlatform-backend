@@ -8,10 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.mapleleaf.backend.entity.Answer;
-import org.mapleleaf.backend.entity.AnswerState;
 import org.mapleleaf.backend.entity.Language;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Data
