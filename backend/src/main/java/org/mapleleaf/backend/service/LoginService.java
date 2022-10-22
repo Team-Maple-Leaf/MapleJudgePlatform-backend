@@ -1,10 +1,13 @@
 package org.mapleleaf.backend.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.LoginRequestDto;
+import org.mapleleaf.backend.dto.TokenDto;
 import org.mapleleaf.backend.entity.Member;
+import org.mapleleaf.backend.exception.UnauthorizedException;
+import org.mapleleaf.backend.jwt.JwtProvider;
 import org.mapleleaf.backend.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.util.Base64;
@@ -12,16 +15,29 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class LoginService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    private final JwtProvider jwtProvider;
+    private final MemberRepository memberRepository;
 
-    public boolean isValidRequest(LoginRequestDto dto) {
-        return dto.getLeaf().equals(encryption(dto.getMaple(), dto.getName(), dto.getPicture()));
+    public TokenDto checkRequestAndCreateToken(LoginRequestDto loginRequestDto){
+        // 유효성 검사
+        if (isValidRequest(loginRequestDto)) {
+            // 존재하지 않는 멤버면 join 먼저 진행
+            if (!memberExists(loginRequestDto.getMaple())) {
+                join(loginRequestDto);
+            }
+            String uuid = getUUID(loginRequestDto.getMaple());
+            String token = jwtProvider.createToken(uuid); // 토큰 생성
+
+            return new TokenDto(token);
+        }
+
+        throw new UnauthorizedException();
     }
 
-    public boolean memberExist(String maple) {
+    public boolean memberExists(String maple) {
         return memberRepository.existsByMaple(maple);
     }
 
@@ -35,6 +51,10 @@ public class LoginService {
 
     public String getUUID(String maple){
         return memberRepository.findByMaple(maple).getUuid();
+    }
+
+    public boolean isValidRequest(LoginRequestDto dto) {
+        return dto.getLeaf().equals(encryption(dto.getMaple(), dto.getName(), dto.getPicture()));
     }
 
     // 유효성 검사
@@ -62,7 +82,6 @@ public class LoginService {
             return e.getMessage();
         }
     }
-
 
     public byte[] xor(byte[] bytes1, byte[] bytes2) {
         int bigger_length = Math.max(bytes1.length, bytes2.length);
