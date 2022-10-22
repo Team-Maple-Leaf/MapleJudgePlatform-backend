@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 
 
 @Slf4j
@@ -39,7 +40,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         }
 
         else if(exception.equals("SignatureException")) {
-            createResponse(404,"시그니처 검증에 실패한 토큰입니다.", response);
+            createResponse(403,"시그니처 검증에 실패한 토큰입니다.", response);
         }
     }
 
@@ -47,7 +48,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         BasicResponse basicResponse = BasicResponse.builder()
                 .code(code)
                 .message(msg) // or 잘못된 접근입니다?
-                .data("")
+                .data(Collections.emptyList())
                 .build();
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(basicResponse);
