@@ -50,9 +50,9 @@ public class springSecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests() // 보호된 리소스 URI에 접근 가능한지 체크
-            .antMatchers("/v1/login/").permitAll()
-            .antMatchers("/v1/login/**").permitAll() // 전체 접근 허용
-            .antMatchers("/v1/login/test").permitAll()
+            .antMatchers("/v1/problem/**").permitAll()
+            .antMatchers("/v1/problemset/**").permitAll()
+            .antMatchers("/v1/login/").permitAll() // 전체 접근 허용
             .antMatchers(SWAGGER_V3).permitAll()
             .anyRequest().authenticated() // 인증된 사용자만 접근 가능
             .and()
