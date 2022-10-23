@@ -72,13 +72,13 @@ public class LoginService {
         Base64.Encoder encoder;
 
         try {
-            md = MessageDigest.getInstance("SHA-256");
-            md.update(xorResult);
+            String ret;
             encoder = Base64.getEncoder();
-
-            // TODO : md.digest() 다시 확인
-            log.info("result - {}", encoder.encodeToString(md.digest()));
-            return encoder.encodeToString(md.digest());
+            md = MessageDigest.getInstance("SHA-256");
+            md.reset();
+            ret = encoder.encodeToString(md.digest(xorResult));
+            log.info("result - {}", ret);
+            return ret;
         } catch (Exception e) {
             log.error(e.getMessage());
             return e.getMessage();
