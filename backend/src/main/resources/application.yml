@@ -9,6 +9,8 @@ spring:
 
 spring:
   config:
+    import:
+      - classpath:/config/jwt.yml
     activate:
       on-profile: local
   datasource:
