@@ -31,7 +31,7 @@ public class ProblemsetController {
     @ApiResponses(
             @ApiResponse(code = 404, message = "전체 문제에 대한 조회를 실패했습니다.")
     )
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<BasicResponse<List<ProblemDto>>> problemset() {
         log.info("get all problems.");
         return ResponseTemplate.execute(

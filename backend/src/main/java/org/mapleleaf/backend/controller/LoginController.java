@@ -29,7 +29,7 @@ public class LoginController {
             @ApiResponse(code=402, message="손상된 JWT 토큰입니다."),
             @ApiResponse(code=403, message="만료된 JWT 토큰입니다."),
             @ApiResponse(code=403, message="시그니처 검증에 실패한 토큰입니다.")})
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<BasicResponse<TokenDto>> login(@RequestBody LoginRequestDto loginRequestDto) {
         return ResponseTemplate.execute(
                 "토큰 발급에 성공했습니다.",
