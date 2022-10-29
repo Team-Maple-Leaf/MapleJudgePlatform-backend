@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/auth/")
@@ -38,8 +40,8 @@ public class AuthController {
                 HttpStatus.UNAUTHORIZED);
     }
 
-    @GetMapping("logout")
-    public ResponseEntity<?> logout(@RequestBody TokenDto tokenDto){
+    @PostMapping("logout")
+    public ResponseEntity<BasicResponse<List<Object>>> logout(@RequestBody TokenDto tokenDto){
         return ResponseTemplate.execute(
                 "로그아웃 되었습니다.",
                 "잘못된 요청입니다.",
