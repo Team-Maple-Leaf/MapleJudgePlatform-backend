@@ -40,12 +40,12 @@ public class AuthController {
                 HttpStatus.UNAUTHORIZED);
     }
 
-    @PostMapping("logout")
-    public ResponseEntity<BasicResponse<List<Object>>> logout(@RequestBody TokenDto tokenDto){
+    @GetMapping("logout")
+    public ResponseEntity<BasicResponse<List<Object>>> logout(@RequestHeader("Authorization") String bearerToken){
         return ResponseTemplate.execute(
                 "로그아웃 되었습니다.",
                 "잘못된 요청입니다.",
-                () -> authService.logout(tokenDto.getToken()),
+                () -> authService.logout(bearerToken),
                 HttpStatus.UNAUTHORIZED);
     }
 }

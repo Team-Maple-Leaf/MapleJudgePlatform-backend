@@ -101,7 +101,9 @@ public class AuthService {
         return ret;
     }
 
-    public List<Object> logout(String token) {
+    public List<Object> logout(String bearerToken) {
+
+        String token = bearerToken.substring("Bearer ".length());
         // token 검증
         if (jwtProvider.isTokenValid(token)) {
             Long expiration = jwtProvider.getExpiration(token);
