@@ -35,9 +35,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = getTokenFromRequest(request); // Request에서 토큰 값 꺼내기
 
             if(StringUtils.hasText(token) && jwtProvider.isTokenValid(token) && jwtProvider.isTokenLogout(token)) {
-                    String uuid = jwtProvider.getUuidFromToken(token); // 토큰에서 uuid 꺼낸다.
-                    UserAuthentication authentication = new UserAuthentication(uuid, null, null);  // id를 인증한다. -> Authentication 가져와서 SecurityContext에 저장
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                String uuid = jwtProvider.getUuidFromToken(token); // 토큰에서 uuid 꺼낸다.
+                UserAuthentication authentication = new UserAuthentication(uuid, null, null);  // id를 인증한다. -> Authentication 가져와서 SecurityContext에 저장
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (MalformedJwtException e) {
             log.error("JwtAuthenticationFilter::: Malformed");

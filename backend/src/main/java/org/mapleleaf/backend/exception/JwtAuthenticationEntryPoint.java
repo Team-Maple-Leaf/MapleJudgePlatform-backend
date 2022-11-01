@@ -22,7 +22,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String exception = (String)request.getAttribute("exception");
-        System.out.println("엔트리포인트에 등장 ~ ");
 
         // 토큰이 헤더에 없는 경우
         if(exception == null) {
