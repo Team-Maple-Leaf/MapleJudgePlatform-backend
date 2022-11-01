@@ -106,7 +106,7 @@ public class AuthService {
         String token = bearerToken.substring("Bearer ".length());
         // token 검증
         if (jwtProvider.isTokenValid(token)) {
-            Long expiration = jwtProvider.getExpiration(token);
+            Long expiration = jwtProvider.getExpirationTime(token);
             redisTemplate.opsForValue().set(token, "logout", expiration, TimeUnit.MILLISECONDS);
             return Collections.emptyList();
         }

@@ -10,7 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
@@ -68,7 +67,7 @@ public class JwtProvider {
         }
     }
 
-    public Long getExpiration(String token) {
+    public Long getExpirationTime(String token) {
         Date expiration = Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
                 .parseClaimsJws(token).getBody().getExpiration();
 
