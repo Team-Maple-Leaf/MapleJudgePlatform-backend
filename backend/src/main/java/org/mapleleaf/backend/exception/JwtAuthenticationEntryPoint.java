@@ -33,7 +33,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         }
 
         else if(exception.equals("ExpiredJwtException")) {
-            createResponse(403,"만료된 JWT 토큰입니다.", response);
+            createResponse(401,"만료된 JWT 토큰입니다.", response);
         }
 
         else if(exception.equals("UnsupportedJwtException")) {
@@ -41,7 +41,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         }
 
         else if(exception.equals("SignatureException")) {
-            createResponse(403,"시그니처 검증에 실패한 토큰입니다.", response);
+            createResponse(401,"시그니처 검증에 실패한 토큰입니다.", response);
         }
         else if(exception.equals("LoggedOutTokenException")) {
             createResponse(401, "로그아웃된 토큰입니다.", response);
