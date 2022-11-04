@@ -5,6 +5,7 @@ import org.mapleleaf.backend.exception.JwtAuthenticationEntryPoint;
 import org.mapleleaf.backend.jwt.JwtAuthenticationFilter;
 import org.mapleleaf.backend.jwt.JwtProvider;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -52,9 +53,12 @@ public class springSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests() // 보호된 리소스 URI에 접근 가능한지 체크
             .antMatchers("/v1/problem/**").permitAll()
             .antMatchers("/v1/problemset/**").permitAll()
-            .antMatchers("/v1/login/").permitAll() // 전체 접근 허용
+            .antMatchers("/v1/auth/**").permitAll() // 전체 접근 허용
             .antMatchers(SWAGGER_V3).permitAll()
             .anyRequest().authenticated() // 인증된 사용자만 접근 가능
+            .and()
+            .logout()
+            .logoutSuccessUrl("/")
             .and()
             .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()

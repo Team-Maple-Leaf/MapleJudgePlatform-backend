@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapleleaf.backend.exception.LoggedOutTokenException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -21,7 +22,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     // JWT 토큰 인증 과정을 위한 Filter
     // spring security에서는 기본적으로 토큰 처리를 위한 필터가 없으므로
-    // 구현을 통해 Filter Chain에 추가해야한다.
+    // 구현을 통해 Filter Chain에 추가해야한다
 
     String TOKEN_PREFIX = "Bearer ";
     String HEADER_STRING = "Authorization";
@@ -32,25 +33,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String token = getTokenFromRequest(request); // Request에서 토큰 값 꺼내기
-            StringUtils.hasText(null);
 
-            if(StringUtils.hasText(token) && jwtProvider.isTokenValid(token)) {
+            if(StringUtils.hasText(token) && jwtProvider.isTokenValid(token) && jwtProvider.isTokenLogout(token)) {
                 String uuid = jwtProvider.getUuidFromToken(token); // 토큰에서 uuid 꺼낸다.
-                UserAuthentication authentication = new UserAuthentication(uuid, null, null);  // id를 인증한다.
+                UserAuthentication authentication = new UserAuthentication(uuid, null, null);  // id를 인증한다. -> Authentication 가져와서 SecurityContext에 저장
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (MalformedJwtException e) {
             log.error("JwtAuthenticationFilter::: Malformed");
             request.setAttribute("exception", "MalformedJwtException");
         } catch (ExpiredJwtException e) {
-            log.error("JwtAuthenticationFilter::: Expired");
+            log.error("ExpiredJwtException");
             request.setAttribute("exception", "ExpiredJwtException");
         } catch (UnsupportedJwtException e) {
-            log.error("JwtAuthenticationFilter::: Unsupported");
+            log.error("UnsupportedJwtExceptio");
             request.setAttribute("exception", "UnsupportedJwtException");
         } catch (SignatureException e) {
             log.error("JwtAuthenticationFilter::: Signature");
             request.setAttribute("exception", "SignatureException");
+        } catch (LoggedOutTokenException e) {
+            log.error("Logged out token.");
+            request.setAttribute("exception", "LoggedOutTokenException");
         }
 
         filterChain.doFilter(request, response);

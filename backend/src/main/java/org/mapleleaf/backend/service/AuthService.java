@@ -5,22 +5,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.LoginRequestDto;
 import org.mapleleaf.backend.dto.TokenDto;
 import org.mapleleaf.backend.entity.Member;
+import org.mapleleaf.backend.exception.LoggedOutTokenException;
 import org.mapleleaf.backend.exception.UnauthorizedException;
 import org.mapleleaf.backend.jwt.JwtProvider;
 import org.mapleleaf.backend.repository.MemberRepository;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class AuthService {
 
     private final JwtProvider jwtProvider;
+    private final RedisTemplate redisTemplate;
     private final MemberRepository memberRepository;
 
+    // 로그인 요청 시 실행하는 메서드
     public TokenDto checkRequestAndCreateToken(LoginRequestDto loginRequestDto){
         // 유효성 검사
         if (isValidRequest(loginRequestDto)) {
@@ -92,5 +99,17 @@ public class LoginService {
         for (int i = 0; i < bigger_length; i++)
             ret[i] = (byte)(bytes1[i % bytes1.length] ^ bytes2[i % bytes2.length]);
         return ret;
+    }
+
+    public List<Object> logout(String bearerToken) {
+
+        String token = bearerToken.substring("Bearer ".length());
+        // token 검증
+        if (jwtProvider.isTokenValid(token)) {
+            Long expiration = jwtProvider.getExpirationTime(token);
+            redisTemplate.opsForValue().set(token, "logout", expiration, TimeUnit.MILLISECONDS);
+            return Collections.emptyList();
+        }
+        throw new LoggedOutTokenException();
     }
 }

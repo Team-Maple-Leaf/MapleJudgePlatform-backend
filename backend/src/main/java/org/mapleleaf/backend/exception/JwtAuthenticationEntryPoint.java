@@ -3,6 +3,7 @@ package org.mapleleaf.backend.exception;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.mapleleaf.backend.dto.response.BasicResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         }
 
         else if(exception.equals("ExpiredJwtException")) {
-            createResponse(403,"만료된 JWT 토큰입니다.", response);
+            createResponse(401,"만료된 JWT 토큰입니다.", response);
         }
 
         else if(exception.equals("UnsupportedJwtException")) {
@@ -40,7 +41,10 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         }
 
         else if(exception.equals("SignatureException")) {
-            createResponse(403,"시그니처 검증에 실패한 토큰입니다.", response);
+            createResponse(401,"시그니처 검증에 실패한 토큰입니다.", response);
+        }
+        else if(exception.equals("LoggedOutTokenException")) {
+            createResponse(401, "로그아웃된 토큰입니다.", response);
         }
     }
 
@@ -53,6 +57,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(basicResponse);
         response.setContentType("application/json;charset=UTF-8");// json 형태로 출력, 한글 깨짐 방지
+        response.setStatus(code);
         PrintWriter out = response.getWriter();
         out.print(json);
     }

@@ -2,19 +2,27 @@ package org.mapleleaf.backend.jwt;
 
 
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapleleaf.backend.exception.LoggedOutTokenException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class JwtProvider {
 
     @Value("${jwt.password}")
     private String secretKey;
+
+    private final RedisTemplate redisTemplate;
 
     /* 토큰 생성 메소드 */
     public String createToken(String subject) {
@@ -57,5 +65,19 @@ public class JwtProvider {
             log.error(e.getMessage());
             throw e;
         }
+    }
+
+    public Long getExpirationTime(String token) {
+        Date expiration = Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
+                .parseClaimsJws(token).getBody().getExpiration();
+
+        Long now = new Date().getTime();
+        return (expiration.getTime() - now);
+    }
+
+    public boolean isTokenLogout(String token) {
+        String isLogout = (String) redisTemplate.opsForValue().get(token);
+        if (StringUtils.hasText(isLogout)) throw new LoggedOutTokenException();
+        return true;
     }
 }
