@@ -19,6 +19,8 @@ services:
     container_name: maple-leaf-server
     depends_on:
       - mysql
+    env_file:
+      - "./backend/.env"
     ports:
       - "8080:8080"
     restart: always
