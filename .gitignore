@@ -174,3 +174,6 @@ backend/caches/
 backend/daemon/
 backend/native/
 backend/jdks/
+*.p12
+
+.env
