@@ -176,3 +176,9 @@ backend/native/
 backend/jdks/
 
 .env
+*.ok
+backend/wrapper/dists/gradle-7.5-bin/f1w0cc9nuo0eivz97x2xlu9sv/gradle-7.5/NOTICE
+backend/wrapper/dists/gradle-7.5-bin/f1w0cc9nuo0eivz97x2xlu9sv/gradle-7.5/LICENSE
+backend/.tmp/gradle-worker-classpath2932091300037895924txt
+*.lck
+backend/wrapper/dists/gradle-7.5.1-bin/7jzzequgds1hbszbhq3npc5ng/gradle-7.5.1/LICENSE
