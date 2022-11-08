@@ -27,7 +27,7 @@ public class JwtProvider {
     /* 토큰 생성 메소드 */
     public String createToken(String subject) {
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + Duration.ofHours(2).toMillis()); // 만료기간: 2시간
+        Date expiration = new Date(now.getTime() + Duration.ofDays(30).toMillis()); // 임시만료기간: 30일
 
         return Jwts.builder()
                 .setIssuer("maple-leaf") // 토큰발급자(iss)
