@@ -12,6 +12,7 @@ spring:
     import:
       - classpath:/config/jwt.yml
       - classpath:/config/redis.yml
+      - classpath:/config/ssl.yml
     activate:
       on-profile: local
   datasource:
