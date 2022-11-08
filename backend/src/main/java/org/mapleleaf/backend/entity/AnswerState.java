@@ -26,7 +26,7 @@ public class AnswerState {
     */
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Result result = Result.ACCEPTED;
+    private Result result = Result.PROCEEDING;
 
     @Column
     private int memory;
