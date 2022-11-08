@@ -27,5 +27,11 @@ services:
     networks:
       - maple-leaf-be-db
 
+  redis:
+    image: redis:7.0-alpine
+    container_name: maple-leaf-redis
+    networks:
+      - maple-leaf-be-db
+
 networks:
   maple-leaf-be-db: {}

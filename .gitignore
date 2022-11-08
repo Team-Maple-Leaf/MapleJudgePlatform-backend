@@ -176,3 +176,7 @@ backend/native/
 backend/jdks/
 
 .env
+*.ok
+backend/wrapper/dists/*
+backend/.tmp/*
+*.lck
