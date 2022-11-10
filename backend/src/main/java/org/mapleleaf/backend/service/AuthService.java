@@ -79,13 +79,12 @@ public class AuthService {
         return encoder.encodeToString(getChecksum(result));
     }
 
-    public static byte[] getChecksum(byte[] bytes) {
-        byte[] ret = new byte[bytes.length];
-        for (int i = 0; i< bytes.length; ++i)
-            ret[i] = (byte)(bytes[i % bytes.length] ^ i);
-        return ret;
+    private byte[] getChecksum(byte[] bytes) {
+        byte ret = 0;
+        for (byte aByte : bytes)
+            ret = (byte)(aByte ^ ret);
+        return String.valueOf(ret).getBytes();
     }
-
 
     public List<Object> logout(String bearerToken) {
 
