@@ -11,6 +11,9 @@ import org.mapleleaf.backend.jwt.JwtProvider;
 import org.mapleleaf.backend.repository.MemberRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.Collections;
@@ -66,9 +69,13 @@ public class AuthService {
 
     // 유효성 검사
     public String encryption(String maple, String name, String picture) {
-        byte[] mapleBytes = maple.getBytes();
-        byte[] nameBytes = name.getBytes();
-        byte[] pictureBytes = picture.getBytes();
+        final Charset ENCODE = StandardCharsets.UTF_8;
+        byte[] mapleBytes;
+        byte[] nameBytes;
+        byte[] pictureBytes;
+        mapleBytes = maple.getBytes(ENCODE);
+        nameBytes = name.getBytes(ENCODE);
+        pictureBytes = picture.getBytes(ENCODE);
         int totalLength = mapleBytes.length + nameBytes.length + pictureBytes.length;
         byte[] result = new byte[totalLength];
 
@@ -83,7 +90,7 @@ public class AuthService {
         byte ret = 0;
         for (byte aByte : bytes)
             ret = (byte)(aByte ^ ret);
-        return String.valueOf(ret).getBytes();
+        return String.valueOf(ret & 0xff).getBytes();
     }
 
     public List<Object> logout(String bearerToken) {
