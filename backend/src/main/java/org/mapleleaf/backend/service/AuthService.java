@@ -69,37 +69,23 @@ public class AuthService {
         byte[] mapleBytes = maple.getBytes();
         byte[] nameBytes = name.getBytes();
         byte[] pictureBytes = picture.getBytes();
+        int totalLength = mapleBytes.length + nameBytes.length + pictureBytes.length;
+        byte[] result = new byte[totalLength];
 
-        // xor
-        byte[] xorResult = xor(pictureBytes, xor(mapleBytes, nameBytes));
-        log.info("xor - {}", xorResult);
-
-        // sha-256, base64 인코딩
-        MessageDigest md;
-        Base64.Encoder encoder;
-
-        try {
-            String ret;
-            encoder = Base64.getEncoder();
-            md = MessageDigest.getInstance("SHA-256");
-            md.reset();
-            ret = encoder.encodeToString(md.digest(xorResult));
-            log.info("result - {}", ret);
-            return ret;
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return e.getMessage();
-        }
+        System.arraycopy(mapleBytes, 0, result, 0, mapleBytes.length);
+        System.arraycopy(nameBytes, 0, result, mapleBytes.length, nameBytes.length);
+        System.arraycopy(pictureBytes, 0, result, mapleBytes.length + nameBytes.length, pictureBytes.length);
+        Base64.Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(getChecksum(result));
     }
 
-    public byte[] xor(byte[] bytes1, byte[] bytes2) {
-        int bigger_length = Math.max(bytes1.length, bytes2.length);
-        byte[] ret = new byte[bigger_length];
-
-        for (int i = 0; i < bigger_length; i++)
-            ret[i] = (byte)(bytes1[i % bytes1.length] ^ bytes2[i % bytes2.length]);
+    public static byte[] getChecksum(byte[] bytes) {
+        byte[] ret = new byte[bytes.length];
+        for (int i = 0; i< bytes.length; ++i)
+            ret[i] = (byte)(bytes[i % bytes.length] ^ i);
         return ret;
     }
+
 
     public List<Object> logout(String bearerToken) {
 
