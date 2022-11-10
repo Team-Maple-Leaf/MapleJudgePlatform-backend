@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.mapleleaf.backend.exception.JwtAuthenticationEntryPoint;
 import org.mapleleaf.backend.jwt.JwtAuthenticationFilter;
 import org.mapleleaf.backend.jwt.JwtProvider;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -40,9 +44,23 @@ public class springSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/img/**");
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("https://www.maple-leaf.dev");
+        configuration.addAllowedOrigin("http://localhost:5173");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
+        http.cors().configurationSource(corsConfigurationSource())
             .and()
             .csrf() ///사이트 간 요청 위조 설정, 이 기능을 위해서는 프론트에서 csrf 토큰 값을 보내줘야함
             .disable()
