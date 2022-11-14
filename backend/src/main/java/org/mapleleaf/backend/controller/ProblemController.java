@@ -12,10 +12,7 @@ import org.mapleleaf.backend.dto.response.BasicResponse;
 import org.mapleleaf.backend.service.ProblemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(value = "[문제 상세정보 페이지]")
 @RequestMapping("/v1/problem")
@@ -26,7 +23,6 @@ public class ProblemController {
 
     // Valid: @NotBlank와 같은 유효성 검사를 해주는 어노테이션
     private final ProblemService problemService;
-
     @ApiOperation(value="특정 problem정보")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "problem_id에 일치하는 문제가 없습니다.")

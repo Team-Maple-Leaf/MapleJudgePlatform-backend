@@ -18,6 +18,7 @@ public class Problem {
     // @Column(name = "name", nullable = false, length = 10)
     @Id
     @Column(name = "problem_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -45,10 +46,25 @@ public class Problem {
     )
     private List<Example> examples;
 
+    @OneToMany(
+            mappedBy="problem",
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Testcase> testcases;
+
     public void addExample(Example example){
         this.examples.add(example);
         if(example.getProblem() != this){
             example.setProblem(this);
+        }
+    }
+
+    public void addTestcase(Testcase testcase){
+        this.testcases.add(testcase);
+        if(testcase.getProblem() != this){
+            testcase.setProblem(this);
         }
     }
 

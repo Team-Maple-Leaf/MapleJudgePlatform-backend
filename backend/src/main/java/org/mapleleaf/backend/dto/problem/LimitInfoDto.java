@@ -2,25 +2,23 @@ package org.mapleleaf.backend.dto.problem;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.*;
 
-@Data
 @ApiModel
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 public class LimitInfoDto {
     @ApiModelProperty(
-            value="메모리 제약",
-            example = "128 MB"
+            value="메모리 제약(MB)",
+            example = "128"
     )
-    String memory;
+    int memory;
 
     @ApiModelProperty(
-            value="시간 제약",
-            example="1 초"
+            value="시간 제약(s)",
+            example="1"
     )
-    String time;
-
-    public LimitInfoDto(String memory, String time) {
-        this.memory = memory;
-        this.time = time;
-    }
+    int time;
 }
