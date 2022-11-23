@@ -2,9 +2,9 @@ package org.mapleleaf.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapleleaf.backend.dto.AnswerDto;
-import org.mapleleaf.backend.dto.AnswerStatusDto;
-import org.mapleleaf.backend.dto.SubmitDto;
+import org.mapleleaf.backend.amqp.AmqpSender;
+import org.mapleleaf.backend.dto.*;
+import org.mapleleaf.backend.dto.problem.TestcaseDto;
 import org.mapleleaf.backend.entity.Answer;
 import org.mapleleaf.backend.entity.Problem;
 import org.mapleleaf.backend.repository.AnswerRepository;
@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 public class AnswerService {
     private final AnswerRepository answerRepository;
     private final ProblemRepository problemRepository;
+    private final AmqpSender amqpSender;
+    private final DtoConvertor convertor;
 
     /**
      * @param id 찾고싶은 Answer의 id
@@ -66,9 +68,18 @@ public class AnswerService {
         if (submitDto.getCode() == null || submitDto.getLanguage() == null || submitDto.getUserId() == null)
             throw new IllegalArgumentException();
         Problem problem = problemRepository.findById(problemId).orElseThrow(IllegalArgumentException::new);
+        List<TestcaseDto> testcaseDto = problem.getTestcases().stream().map(convertor::toDto).collect(Collectors.toList());
         log.info("problem id in answer service: {} ", problem.getId());
         Answer answer = submitDto.toAnswerEntityWithProblem(problem);
-        return new AnswerDto(answerRepository.save(answer));
+        answer = answerRepository.save(answer);
+        ToJudgeDto judgeDto = ToJudgeDto.builder()
+                .answerId(answer.getId())
+                .language(answer.getLanguage())
+                .code(answer.getCode())
+                .testcases(testcaseDto)
+                .build();
+        amqpSender.send(judgeDto);
+        return new AnswerDto(answer);
     }
 
     /**

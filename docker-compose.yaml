@@ -33,5 +33,15 @@ services:
     networks:
       - maple-leaf-be-db
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.11-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - maple-leaf-be-db
+
 networks:
-  maple-leaf-be-db: {}
+  maple-leaf-be-db:
+    name: maple-leaf-db-db

@@ -1,5 +1,7 @@
 package org.mapleleaf.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -25,6 +27,10 @@ public class AnswerStatusDto {
             value="사용한 메모리"
     )
     private int memory;
+    @ApiModelProperty(
+            value="답안 id"
+    )
+    @JsonProperty("answer_id")
     private Long answerId;
 
     public AnswerStatusDto(final AnswerState state) {
