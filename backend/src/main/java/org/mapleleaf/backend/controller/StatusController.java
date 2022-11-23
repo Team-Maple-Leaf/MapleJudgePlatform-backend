@@ -7,12 +7,14 @@ import org.mapleleaf.backend.controller.template.ResponseTemplate;
 import org.mapleleaf.backend.dto.AnswerStatusDto;
 import org.mapleleaf.backend.dto.response.BasicResponse;
 import org.mapleleaf.backend.dto.response.BasicResponses;
-import org.mapleleaf.backend.service.AnswerStateService;
+import org.mapleleaf.backend.service.AnswerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api(value = "[제출 결과 페이지]")
 @RequestMapping("/v1/status")
@@ -20,12 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class StatusController {
-    private final AnswerStateService service;
+    private final AnswerService service;
     @ApiOperation(value = "특정 answer 제출 답안의 결과")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "user_id값 혹은 problem_id가 존재하지 않습니다."),
             @ApiResponse(code = 401, message = "user_id와 일치하는 user가 없습니다."),
-            @ApiResponse(code = 404, message = "일치하는 answer가 없습니다.")
+            @ApiResponse(code = 404, message = "일치하는 problem이 없습니다.")
     })
     @ApiImplicitParams(
             {
@@ -42,7 +44,7 @@ public class StatusController {
             }
     )
     @GetMapping("")
-    public ResponseEntity<BasicResponse<AnswerStatusDto>> status(
+    public ResponseEntity<BasicResponse<List<AnswerStatusDto>>> status(
             @RequestParam(value="problem_id", required = false)Long problemId,
             @RequestParam(value="user_id", required = false)String userId) {
         log.info("problem id: {}, user id: {}", problemId, userId);
@@ -57,8 +59,19 @@ public class StatusController {
         }
         return ResponseTemplate.execute(
                 "status 조회에 성공했습니다.",
+                "일치하는 problem이 없습니다.",
+                () ->service.getAllStateByProblemAndUserId(problemId, userId),
+                HttpStatus.NOT_FOUND
+        );
+    }
+    @GetMapping("/{answerId}")
+    public ResponseEntity<BasicResponse<AnswerStatusDto>> oneStatus(
+            @PathVariable Long answerId)
+    {
+        return ResponseTemplate.execute(
+                "status 조회에 성공했습니다.",
                 "일치하는 answer가 없습니다.",
-                () ->service.getStateByProblemIdAndUserId(problemId, userId),
+                () -> service.getOneState(answerId),
                 HttpStatus.NOT_FOUND
         );
     }
