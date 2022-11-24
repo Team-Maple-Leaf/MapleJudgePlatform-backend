@@ -28,7 +28,7 @@ services:
       REDIS_HOST: ${REDIS_HOST}
       JWT_PASSWORD: ${JWT_PASSWORD}
     ports:
-      - "8080:8080"
+      - "45000:8080"
     restart: always
     networks:
       - maple-leaf-be-db
