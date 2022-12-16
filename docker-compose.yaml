@@ -38,6 +38,7 @@ services:
     container_name: maple-leaf-redis
     networks:
       - maple-leaf-be-db
+    restart: always
 
   rabbitmq:
     container_name: rabbitmq
@@ -45,6 +46,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    restart: always
     networks:
       - maple-leaf-be-db
 
