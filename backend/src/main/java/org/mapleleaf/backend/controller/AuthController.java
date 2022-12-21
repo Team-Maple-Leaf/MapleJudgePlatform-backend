@@ -48,4 +48,13 @@ public class AuthController {
                 () -> authService.logout(bearerToken),
                 HttpStatus.UNAUTHORIZED);
     }
+
+    @GetMapping("refresh")
+    public ResponseEntity<BasicResponse<TokenDto>> refresh(@RequestBody TokenDto tokenDto){
+        return ResponseTemplate.execute(
+                "토큰 재발급에 성공했습니다.",
+                "잘못된 요청입니다.",
+                () -> authService.refresh(tokenDto),
+                HttpStatus.UNAUTHORIZED);
+    }
 }
