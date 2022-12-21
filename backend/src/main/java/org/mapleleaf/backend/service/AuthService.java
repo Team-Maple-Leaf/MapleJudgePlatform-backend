@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
@@ -39,9 +38,16 @@ public class AuthService {
                 join(loginRequestDto);
             }
             String uuid = getUUID(loginRequestDto.getMaple());
-            String token = jwtProvider.createToken(uuid); // 토큰 생성
 
-            return new TokenDto(token);
+            String accessToken = jwtProvider.createToken(uuid);
+            String refreshToken = jwtProvider.createRefreshToken(uuid);
+            redisTemplate.opsForValue().set(accessToken, uuid, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
+            redisTemplate.opsForValue().set(accessToken, refreshToken, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
+
+            return TokenDto.builder()
+                    .accessToken(accessToken)
+                    .refreshToken(refreshToken)
+                    .build();
         }
 
         throw new UnauthorizedException();
@@ -103,5 +109,15 @@ public class AuthService {
             return Collections.emptyList();
         }
         throw new LoggedOutTokenException();
+    }
+
+    public TokenDto refresh(TokenDto tokenDto){
+        // 1. accToken 만료?
+        // 2. refToken 만료?
+        String uuid = String.valueOf(redisTemplate.opsForValue().get(tokenDto.getAccessToken()));
+        return TokenDto.builder()
+                .accessToken(jwtProvider.createToken(uuid))
+                .refreshToken(jwtProvider.createRefreshToken(uuid))
+                .build();
     }
 }
