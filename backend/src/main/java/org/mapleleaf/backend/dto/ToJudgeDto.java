@@ -20,4 +20,8 @@ public class ToJudgeDto {
     String code;
     Language language;
     List<TestcaseDto> testcases;
+    @JsonProperty("time_limit")
+    int timeLimit;
+    @JsonProperty("memory_limit")
+    int memoryLimit;
 }

@@ -52,4 +52,4 @@ services:
 
 networks:
   maple-leaf-be-db:
-    name: maple-leaf-db-db
+    name: maple-leaf-be-db
