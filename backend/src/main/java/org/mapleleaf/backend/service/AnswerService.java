@@ -77,6 +77,8 @@ public class AnswerService {
                 .language(answer.getLanguage())
                 .code(answer.getCode())
                 .testcases(testcaseDto)
+                .memoryLimit(problem.getLimitMemory())
+                .timeLimit(problem.getLimitTime())
                 .build();
         amqpSender.send(judgeDto);
         return new AnswerDto(answer);
