@@ -26,26 +26,26 @@ public enum Result {
     /**
      * 오답
      */
-    @JsonProperty("Wrong Answer")
+    @JsonProperty("WrongAnswer")
     WRONG_ANSWER,
     /**
      * 시간초과
      */
-    @JsonProperty("Time Limit Exceeded")
+    @JsonProperty("TimeLimitExceeded")
     TIME_LIMIT_EXCEEDED,
     /**
      * 메모리 초과
      */
-    @JsonProperty("Memory Limit Exceeded")
+    @JsonProperty("MemoryLimitExceeded")
     MEMORY_LIMIT_EXCEEDED,
     /**
      * 컴파일 에러
      */
-    @JsonProperty("Compile Error")
+    @JsonProperty("CompileError")
     COMPILE_ERROR,
     /**
      * 런타임 에러
      */
-    @JsonProperty("Runtime Error")
+    @JsonProperty("RuntimeError")
     RUNTIME_ERROR;
 }
