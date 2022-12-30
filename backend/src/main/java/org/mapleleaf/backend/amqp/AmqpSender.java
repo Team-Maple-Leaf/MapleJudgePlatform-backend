@@ -25,7 +25,7 @@ public class AmqpSender {
         try {
             result = objectMapper.writeValueAsString(dto);
             this.template.convertAndSend(toRustQueue.getName(), result);
-            log.info(result);
+            log.info("성공 데이터: {}", result);
         } catch (JsonProcessingException e){
             log.error("객체 직렬화 실패");
         }
