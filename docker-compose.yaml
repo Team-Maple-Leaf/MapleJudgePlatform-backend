@@ -16,12 +16,17 @@ services:
       - ./db/conf.d:/etc/mysql/conf.d
       - ./db/data:/var/lib/mysql
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 
   springboot:
     build: .
     container_name: maple-leaf-server
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     environment:
       SSL_PWD: ${SSL_PWD}
       REDIS_PORT: ${REDIS_PORT}
@@ -52,4 +57,4 @@ services:
 
 networks:
   maple-leaf-be-db:
-    name: maple-leaf-be-db
+    external: true
