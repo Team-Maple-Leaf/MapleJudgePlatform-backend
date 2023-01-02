@@ -15,5 +15,6 @@ jobs:
           issuesOpenedReactions: '+1'
           issuesOpenedComment: |
             LGTM 👍(･ω･)👍
+          pullRequestOpenedReactions: '+1'
           pullRequestOpened: |
             LGTM 👍(･ω･)👍
