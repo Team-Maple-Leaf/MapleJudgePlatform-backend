@@ -41,8 +41,8 @@ public class AuthService {
 
             String accessToken = jwtProvider.createToken(uuid);
             String refreshToken = jwtProvider.createRefreshToken(uuid);
-            redisTemplate.opsForValue().set(accessToken, uuid, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
-            redisTemplate.opsForValue().set(accessToken, refreshToken, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
+            //redisTemplate.opsForValue().set(accessToken, uuid, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
+            //redisTemplate.opsForValue().set(accessToken, refreshToken, jwtProvider.getExpirationTime(refreshToken), TimeUnit.MILLISECONDS);
 
             return TokenDto.builder()
                     .accessToken(accessToken)
@@ -112,8 +112,6 @@ public class AuthService {
     }
 
     public TokenDto refresh(TokenDto tokenDto){
-        // 1. accToken 만료?
-        // 2. refToken 만료?
         String uuid = String.valueOf(redisTemplate.opsForValue().get(tokenDto.getAccessToken()));
         return TokenDto.builder()
                 .accessToken(jwtProvider.createToken(uuid))
