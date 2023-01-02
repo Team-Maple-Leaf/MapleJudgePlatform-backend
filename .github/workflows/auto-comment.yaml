@@ -1,10 +1,6 @@
 name: Auto Comment
 
-on:
-  pull_request:
-    types:
-      - opened
-
+on: [issues, pull_request]
 jobs:
   run:
     runs-on: ubuntu-latest
