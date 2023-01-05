@@ -6,8 +6,10 @@ import org.mapleleaf.backend.amqp.AmqpSender;
 import org.mapleleaf.backend.dto.*;
 import org.mapleleaf.backend.dto.problem.TestcaseDto;
 import org.mapleleaf.backend.entity.Answer;
+import org.mapleleaf.backend.entity.Member;
 import org.mapleleaf.backend.entity.Problem;
 import org.mapleleaf.backend.repository.AnswerRepository;
+import org.mapleleaf.backend.repository.MemberRepository;
 import org.mapleleaf.backend.repository.ProblemRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class AnswerService {
     private final AnswerRepository answerRepository;
     private final ProblemRepository problemRepository;
+    private final MemberRepository memberRepository;
     private final AmqpSender amqpSender;
     private final DtoConvertor convertor;
 
@@ -38,10 +41,13 @@ public class AnswerService {
      */
     public AnswerDto getAnswer(Long id)
     {
-        return new AnswerDto(
+        AnswerDto dto = new AnswerDto(
                         answerRepository
                                 .findById(id)
                                 .orElseThrow(IllegalArgumentException::new));
+        Member member = memberRepository.findByMaple(dto.getUserId());
+        dto.setUserId(member.getName());
+        return dto;
     }
 
     /**
@@ -54,6 +60,11 @@ public class AnswerService {
         return answerRepository.findAll()
                 .stream()
                 .map(AnswerDto::new)
+                .peek(dto -> {
+                    String s = dto.getUserId();
+                    Member member = memberRepository.findByMaple(s);
+                    dto.setUserId(member.getName());
+                })
                 .collect(Collectors.toList());
     }
 
