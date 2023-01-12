@@ -3,10 +3,7 @@ package org.mapleleaf.backend.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.mapleleaf.backend.entity.Answer;
 import org.mapleleaf.backend.entity.Language;
 
@@ -16,6 +13,8 @@ import java.util.Date;
 @ApiModel
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Builder
 public class AnswerDto {
 
