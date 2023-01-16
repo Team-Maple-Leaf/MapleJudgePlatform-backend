@@ -22,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class AnswerController {
+
     private final AnswerService service;
 
     @ApiOperation(value="특정 answer 에대한 정보")
