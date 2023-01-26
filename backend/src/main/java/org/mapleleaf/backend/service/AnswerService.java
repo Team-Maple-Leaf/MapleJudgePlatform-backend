@@ -11,6 +11,9 @@ import org.mapleleaf.backend.entity.Problem;
 import org.mapleleaf.backend.repository.AnswerRepository;
 import org.mapleleaf.backend.repository.MemberRepository;
 import org.mapleleaf.backend.repository.ProblemRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -130,5 +133,25 @@ public class AnswerService {
         Answer answer = answerRepository.findById(answerId)
                 .orElseThrow(IllegalArgumentException::new);
         return new AnswerStatusDto(answer);
+    }
+
+    /**
+     * 페이지네이션 기능이 추가된 문제 페이지
+     * @param pageable 페이징을 제공하는 인터페이스, PageRequest 객체를 사용한다.
+     * @return Page<AnswerDto>
+     * @see AnswerDto
+     */
+    public Page<AnswerDto> getAllPagingAnswers(Pageable pageable) {
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), (int) answerRepository.count());
+
+        List<AnswerDto> answerDtoList = answerRepository.findAll(pageable).stream()
+                .map(AnswerDto::new)
+                .peek(dto -> {
+                    String userName = memberRepository.findByMaple(dto.getUserId()).getName();
+                    dto.setUserId(userName);})
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(answerDtoList.subList(start, end), pageable, answerRepository.count());
     }
 }

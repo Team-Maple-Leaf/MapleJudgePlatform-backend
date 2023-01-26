@@ -14,6 +14,8 @@ import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.repository.ExampleRepository;
 import org.mapleleaf.backend.repository.ProblemRepository;
 import org.mapleleaf.backend.repository.TestcaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,4 +74,7 @@ public class ProblemService {
                 .collect(Collectors.toList());
     }
 
+    public Page<ProblemDto> getAllPagingProblems(Pageable pageable) {
+        return problemRepository.findAll(pageable).map(dtoConvertor::toDto);
+    }
 }
