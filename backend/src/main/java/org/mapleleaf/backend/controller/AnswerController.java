@@ -10,6 +10,10 @@ import org.mapleleaf.backend.controller.template.ResponseTemplate;
 import org.mapleleaf.backend.dto.AnswerDto;
 import org.mapleleaf.backend.dto.response.BasicResponse;
 import org.mapleleaf.backend.service.AnswerService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,13 +47,24 @@ public class AnswerController {
     }
 
     @ApiOperation(value="모든 answer의 정보")
-    @GetMapping("")
+    @GetMapping("/all")
     public ResponseEntity<BasicResponse<List<AnswerDto>>> all() {
         log.info("answer all");
         return ResponseTemplate.execute(
                 "전체 Answer에 대한 조회를 성공했습니다.",
                 "전체 Answer에 대한 조회를 실패했습니다.",
                 service::getAll,
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ApiOperation(value="모든 answer의 정보")
+    @GetMapping("")
+    public ResponseEntity<BasicResponse<Page<AnswerDto>>> pagingAll(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        return ResponseTemplate.execute(
+                "전체 Answer에 대한 조회를 성공했습니다.",
+                "전체 Answer에 대한 조회를 실패했습니다.",
+                () -> service.getAllPagingAnswers(pageable),
                 HttpStatus.NOT_FOUND
         );
     }

@@ -12,7 +12,6 @@ import org.mapleleaf.backend.entity.Problem;
 import org.mapleleaf.backend.entity.Testcase;
 import org.mapleleaf.backend.exception.NotFoundException;
 import org.mapleleaf.backend.repository.ExampleRepository;
-import org.mapleleaf.backend.repository.PagingAnswerRepository;
 import org.mapleleaf.backend.repository.ProblemRepository;
 import org.mapleleaf.backend.repository.TestcaseRepository;
 import org.springframework.data.domain.Page;
@@ -32,7 +31,6 @@ public class ProblemService {
     private final ProblemRepository problemRepository;
     private final ExampleRepository exampleRepository;
     private final TestcaseRepository testcaseRepository;
-    private final PagingAnswerRepository pagingAnswerRepository;
     private final DtoConvertor dtoConvertor;
 
 
@@ -77,6 +75,6 @@ public class ProblemService {
     }
 
     public Page<ProblemDto> getAllPagingProblems(Pageable pageable) {
-        return pagingAnswerRepository.findAll(pageable).map(dtoConvertor::toDto);
+        return problemRepository.findAll(pageable).map(dtoConvertor::toDto);
     }
 }
