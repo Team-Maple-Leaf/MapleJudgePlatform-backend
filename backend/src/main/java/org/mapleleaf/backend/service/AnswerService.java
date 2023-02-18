@@ -152,6 +152,6 @@ public class AnswerService {
                     dto.setUserId(userName);})
                 .collect(Collectors.toList());
 
-        return new PageImpl<>(answerDtoList.subList(start, end), pageable, answerRepository.count());
+        return new PageImpl<>(answerDtoList, pageable, answerRepository.count());
     }
 }
