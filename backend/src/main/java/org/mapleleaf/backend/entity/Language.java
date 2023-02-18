@@ -1,5 +1,10 @@
 package org.mapleleaf.backend.entity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum Language {
-    C, CPP;
+
+    @JsonProperty("C")
+    C,
+    @JsonProperty("C++")
+    CPP;
 }
