@@ -27,6 +27,7 @@ public class ResponseTemplate{
             log.info(successMsg);
             return new ResponseEntity<>(basicResponse, HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e.getMessage());
             log.info(failedMsg);
             if (failedType == HttpStatus.NOT_FOUND) {
                 BasicResponse<T> basicResponse =
