@@ -49,4 +49,16 @@ public class AdminProblemController {
                 HttpStatus.BAD_REQUEST
         );
     }
+
+    @ApiOperation(value = "problem 삭제")
+    @DeleteMapping("/problem/{problemId}")
+    public ResponseEntity<BasicResponse<Long>> deleteProblem(@PathVariable Long problemId) {
+        log.info("delete problem");
+        return ResponseTemplate.execute(
+                "문제 삭제에 성공했습니다.",
+        "문제 삭제에 실패했습니다.",
+                () ->problemService.delete(problemId),
+                HttpStatus.BAD_REQUEST
+        );
+    }
 }

@@ -33,6 +33,12 @@ public class ProblemService {
     private final TestcaseRepository testcaseRepository;
     private final DtoConvertor dtoConvertor;
 
+    public Long delete(Long problemId) {
+        if (!problemRepository.existsById(problemId))
+            throw new IllegalArgumentException();
+        problemRepository.deleteById(problemId);
+        return problemId;
+    }
 
     public Long submit(ProblemSubmitDto submitDto) {
         if (submitDto.getTitle() == null
